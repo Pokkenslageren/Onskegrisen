@@ -28,7 +28,7 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      working-directory: '.github/workflows'
+      working-directory: 'OnskegrisenProjekt'
       run: mvn -B test
 
 
