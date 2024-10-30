@@ -30,7 +30,7 @@ jobs:
     - name: Build with Maven
       run: 
         cd OnskegrisenProjekt
-        ./mvnw -B test
+        mvn -X -B test
 
 
   qodana: 
