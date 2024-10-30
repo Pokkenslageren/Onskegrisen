@@ -27,13 +27,10 @@ jobs:
         java-version: '17'
         distribution: 'temurin'
         cache: maven
-    - name: Debug - List directory contents
-      run: ls -R
-    - name: Debug - List OnskegrisenProjekt contents
-      run: ls OnskegrisenProjekt
     - name: Build with Maven
       working-directory: './OnskegrisenProjekt'
-      run: mvn -B clean install
+      run: mvn -B -e -X clean install
+
 
 
   qodana: 
