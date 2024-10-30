@@ -28,7 +28,8 @@ jobs:
         distribution: 'temurin'
         cache: maven
     - name: Build with Maven
-      run: cd Oenskegrisen && mvn -B test
+      working-directory: '.github/workflows'
+      run: mvn -B test
 
 
   qodana: 
