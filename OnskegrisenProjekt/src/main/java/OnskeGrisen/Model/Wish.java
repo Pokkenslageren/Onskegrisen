@@ -1,4 +1,4 @@
-package Model;
+package OnskeGrisen.Model;
 import java.util.*;
 
 public class Wish {

@@ -1,6 +1,5 @@
-package Model;
+package OnskeGrisen.Model;
 import java.util.*;
-import java.math.*;
 
 public class User {
     private String username, password;
