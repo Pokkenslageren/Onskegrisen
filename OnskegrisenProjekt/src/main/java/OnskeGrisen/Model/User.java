@@ -3,7 +3,6 @@ import java.util.*;
 
 public class User {
     private String username, password;
-    private final int userId;
     private ArrayList<WishList> wishLists;
     private int numberOfWishLists;
     Random rdm = new Random();
@@ -11,7 +10,6 @@ public class User {
     public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.userId = rdm.nextInt(1000000);
         this.wishLists = new ArrayList<>();
         this.numberOfWishLists = 0;
     }
@@ -21,9 +19,6 @@ public class User {
     }
     public String getPassword() {
         return password;
-    }
-    public int getUserId() {
-        return userId;
     }
     public ArrayList<WishList> getWishLists() {
         return wishLists;
