@@ -41,7 +41,26 @@ public class UserRepository {
     public User readUserByUsername(String userName) {
         String query = "SELECT * FROM users WHERE user_name = ?";
 
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("connection not established.");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, userName);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()) {
+                String readUserName = rs.getString("user_name");
+                String readPassword = rs.getString("user_password");
+                users.add(new User(readUserName, readPassword));
+            }
+            rs.close();
 
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+        return null;
     }
 
     public void updateUser(User user, String userName) {
