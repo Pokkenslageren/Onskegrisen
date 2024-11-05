@@ -20,7 +20,7 @@ public class UserRepository {
     public void createUser(User user) {
        String query = "INSERT INTO users (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?)";
 
-       try {
+       try{
            Class.forName("com.mysql.cj.jdbc.Driver");
            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
            if (conn == null) {
@@ -32,16 +32,17 @@ public class UserRepository {
            pstmt.executeUpdate(query);
            pstmt.close();
 
-       } catch(Exception e) {
+       }
+       catch(Exception e) {
            System.out.println(e.getMessage());
-        }
+       }
     }
 
 
     public User readUserByUsername(String userName) {
         String query = "SELECT * FROM users WHERE user_name = ?";
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if (conn == null) {
@@ -58,7 +59,8 @@ public class UserRepository {
             }
             rs.close();
 
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -68,7 +70,7 @@ public class UserRepository {
     public void updateUser(User user, String newUserName) {
         String query = "UPDATE users SET user_name = ? WHERE user_name = ?";
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if (conn == null) {
@@ -80,7 +82,8 @@ public class UserRepository {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println(e.getMessage());
         }
 
@@ -89,7 +92,7 @@ public class UserRepository {
     public void deleteUser(String userName) {
         String query = "DELETE FROM users WHERE user_name = ?";
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if (conn == null) {
@@ -100,7 +103,8 @@ public class UserRepository {
             pstmt.executeUpdate();
             pstmt.close();
 
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println(e.getMessage());
         }
 

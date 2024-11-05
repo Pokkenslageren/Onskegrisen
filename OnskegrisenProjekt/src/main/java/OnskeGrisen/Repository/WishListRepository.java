@@ -24,7 +24,7 @@ public class WishListRepository {
     public void createWishList(String wishListOwner, String wishListName, String wishListDescription) {
         String query = "INSERT INTO user_wishlists VALUES (?, ?, ?)";
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");;
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
@@ -38,7 +38,8 @@ public class WishListRepository {
             pstmt.close();
 
 
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println(e.getMessage());
         }
     }
@@ -46,7 +47,7 @@ public class WishListRepository {
     public WishList readWishListByName(User user, String wishListName) {
         String query = "SELECT * FROM user_wishlists WHERE user_wishlists_name = ?";
 
-        try {
+        try{
             Class.forName("com.mysql.cj.jdbc.Driver");;
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
@@ -65,13 +66,52 @@ public class WishListRepository {
             }
             rs.close();
 
-        } catch(Exception e) {
+        }
+        catch(Exception e) {
             System.out.println(e.getMessage());
         }
         return null;
     }
 
     public void updateWishList(User user, String wishListName, String wishListDescription) {
-        
+        String query = "INSERT INTO user_wishlists VALUES (?, ?, ?)";
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");;
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if(conn == null) {
+                System.out.println("Connection not established");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, wishListName);
+            pstmt.setString(2, wishListDescription);
+            pstmt.setString(3, wishListName);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void deleteWishList(User user, String wishListName) {
+        String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ?";
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");;
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if(conn == null) {
+                System.out.println("Connection not established");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, wishListName);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        }
+        catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
     }
 }
