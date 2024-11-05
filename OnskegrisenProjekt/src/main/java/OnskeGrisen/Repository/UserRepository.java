@@ -63,11 +63,44 @@ public class UserRepository {
         return null;
     }
 
-    public void updateUser(User user, String userName) {
+    public void updateUser(User user, String newUserName) {
+        String query = "UPDATE users SET user_name = ? WHERE user_name = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("connection not established.");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, newUserName);
+            pstmt.setString(2, user.getUsername());
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
     public void deleteUser(String userName) {
+        String query = "DELETE FROM users WHERE user_name = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("Connection not established.");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, userName);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 
