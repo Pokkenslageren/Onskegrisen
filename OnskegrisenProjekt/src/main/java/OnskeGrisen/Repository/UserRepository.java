@@ -27,8 +27,8 @@ public class UserRepository {
                System.out.println("connection not established.");
            }
            PreparedStatement pstmt = conn.prepareStatement(query);
-           pstmt.setString(2, user.getUsername());
-           pstmt.setString(3, user.getPassword());
+           pstmt.setString(1, user.getUsername());
+           pstmt.setString(2, user.getPassword());
            pstmt.executeUpdate(query);
            pstmt.close();
 

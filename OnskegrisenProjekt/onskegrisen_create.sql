@@ -5,19 +5,17 @@ CREATE DATABASE IF NOT EXISTS `onskegrisen`;
 USE `onskegrisen`;
 
 CREATE TABLE IF NOT EXISTS `login` (
-`login_id` INT NOT NULL AUTO_INCREMENT, 
 `login_name` varchar(50) NOT NULL,
 `login_password` varchar(50) NOT NULL,
-PRIMARY KEY (`login_id`)
+PRIMARY KEY (`login_name`)
 );
 
 CREATE TABLE IF NOT EXISTS `users`(
-`user_id` INT NOT NULL AUTO_INCREMENT, 
 `user_name` varchar(50) NOT NULL,
 `user_password` varchar(50) NOT NULL,
-PRIMARY KEY (`user_id`),
+PRIMARY KEY (`user_name`),
 -- FOREIGN KEY (`user_name`, `user_password`) REFERENCES login(`login_name`, `login_password`)
-FOREIGN KEY (`user_id`) REFERENCES login(`login_id`)
+FOREIGN KEY (`user_name`) REFERENCES login(`login_name`)
 );
 
 CREATE TABLE IF NOT EXISTS `user_wishlists` (
