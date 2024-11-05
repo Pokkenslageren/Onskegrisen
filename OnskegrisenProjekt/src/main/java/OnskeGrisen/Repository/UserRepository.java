@@ -54,6 +54,7 @@ public class UserRepository {
                 String readUserName = rs.getString("user_name");
                 String readPassword = rs.getString("user_password");
                 users.add(new User(readUserName, readPassword));
+                return users.get(users.indexOf(readUserName));
             }
             rs.close();
 
@@ -61,6 +62,7 @@ public class UserRepository {
             System.out.println(e.getMessage());
         }
         return null;
+
     }
 
     public void updateUser(User user, String newUserName) {
