@@ -19,20 +19,20 @@ FOREIGN KEY (`user_name`) REFERENCES login(`login_name`)
 );
 
 CREATE TABLE IF NOT EXISTS `user_wishlists` (
-`user_wishlists_id` INT NOT NULL AUTO_INCREMENT, 
+`user_wishlists_owner`varchar(50) NOT NULL,
 `user_wishlists_name` varchar(50) NOT NULL,
 `number_of_wishlists` int NOT NULL,
-PRIMARY KEY (`user_wishlists_id`),
+PRIMARY KEY (`user_wishlists_name`),
 -- FOREIGN KEY (`user_wishlists_name`) REFERENCES users(`user_name`)
-FOREIGN KEY (`user_wishlists_id`) REFERENCES users(`user_id`)
+FOREIGN KEY (`user_wishlists_owner`) REFERENCES users(`user_name`)
 );
 
 CREATE TABLE IF NOT EXISTS `wishlist` (
-`wishlist_id` INT NOT NULL AUTO_INCREMENT, 
+`wishlist_owner` varchar(50) NOT NULL,
 `wishlist_name` varchar(50) NOT NULL,
 `is_reserved` boolean NOT NULL,
-PRIMARY KEY (`wishlist_id`),
+PRIMARY KEY (`wishlist_name`),
 -- FOREIGN KEY (`wishlist_id`, `wishlist_name`) REFERENCES wishlist (`user_wishlist_id`, `user_wishlist_name`)
-FOREIGN KEY (`wishlist_id`) REFERENCES user_wishlists(`user_wishlists_id`)
+FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlists(`user_wishlists_name`)
 
 );

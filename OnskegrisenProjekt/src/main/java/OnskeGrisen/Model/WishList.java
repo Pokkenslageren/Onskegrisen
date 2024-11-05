@@ -2,21 +2,21 @@ package OnskeGrisen.Model;
 import java.util.*;
 
 public class WishList {
-    private int wishListId;
+    private String wishListOwner;
     private String wishListName;
     private String wishListDescription;
     private ArrayList<Wish> wishList;
-    Random rdm = new Random();
 
-    public WishList(String wishListName, String wishListDescription) {
-        this.wishListId = rdm.nextInt(100);
+    public WishList(String wishListOwner, String wishListName, String wishListDescription) {
+        this.wishListOwner = wishListOwner;
         this.wishListName = wishListName;
         this.wishListDescription = wishListDescription;
         this.wishList = new ArrayList<>();
+
     }
 
-    public int getWishListId() {
-        return wishListId;
+    public String getWishListOwner() {
+        return wishListOwner;
     }
     public String getWishListName() {
         return wishListName;
@@ -28,8 +28,8 @@ public class WishList {
         return wishList;
     }
 
-    public void setWishListId(int wishListId) {
-        this.wishListId = wishListId;
+    public void setWishListOwner(String wishListOwner) {
+        this.wishListOwner = wishListOwner;
     }
     public void setWishListName(String wishListName) {
         this.wishListName = wishListName;
