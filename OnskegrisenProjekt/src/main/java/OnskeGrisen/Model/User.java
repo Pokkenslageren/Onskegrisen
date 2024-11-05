@@ -5,7 +5,6 @@ public class User {
     private String username, password;
     private ArrayList<WishList> wishLists;
     private int numberOfWishLists;
-    Random rdm = new Random();
 
     public User(String username, String password) {
         this.username = username;

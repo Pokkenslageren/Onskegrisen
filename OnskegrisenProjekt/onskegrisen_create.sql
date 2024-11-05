@@ -13,6 +13,7 @@ PRIMARY KEY (`login_name`)
 CREATE TABLE IF NOT EXISTS `users`(
 `user_name` varchar(50) NOT NULL,
 `user_password` varchar(50) NOT NULL,
+`number_of_wishlists` int NOT NULL,
 PRIMARY KEY (`user_name`),
 -- FOREIGN KEY (`user_name`, `user_password`) REFERENCES login(`login_name`, `login_password`)
 FOREIGN KEY (`user_name`) REFERENCES login(`login_name`)
@@ -21,7 +22,6 @@ FOREIGN KEY (`user_name`) REFERENCES login(`login_name`)
 CREATE TABLE IF NOT EXISTS `user_wishlists` (
 `user_wishlists_owner`varchar(50) NOT NULL,
 `user_wishlists_name` varchar(50) NOT NULL,
-`number_of_wishlists` int NOT NULL,
 PRIMARY KEY (`user_wishlists_name`),
 -- FOREIGN KEY (`user_wishlists_name`) REFERENCES users(`user_name`)
 FOREIGN KEY (`user_wishlists_owner`) REFERENCES users(`user_name`)

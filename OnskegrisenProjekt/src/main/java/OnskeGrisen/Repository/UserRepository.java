@@ -18,7 +18,7 @@ public class UserRepository {
     }
 
     public void createUser(User user) {
-       String query = "INSERT INTO users (user_name, user_password) VALUES (?, ?)";
+       String query = "INSERT INTO users (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?)";
 
        try {
            Class.forName("com.mysql.cj.jdbc.Driver");
