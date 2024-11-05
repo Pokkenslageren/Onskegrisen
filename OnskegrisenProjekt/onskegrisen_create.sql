@@ -22,14 +22,19 @@ FOREIGN KEY (`user_name`) REFERENCES login(`login_name`)
 CREATE TABLE IF NOT EXISTS `user_wishlists` (
 `user_wishlists_owner`varchar(50) NOT NULL,
 `user_wishlists_name` varchar(50) NOT NULL,
+`wishlist_description` varchar(400),
 PRIMARY KEY (`user_wishlists_name`),
 -- FOREIGN KEY (`user_wishlists_name`) REFERENCES users(`user_name`)
 FOREIGN KEY (`user_wishlists_owner`) REFERENCES users(`user_name`)
 );
 
-CREATE TABLE IF NOT EXISTS `wishlist` (
+CREATE TABLE IF NOT EXISTS `wish` (
 `wishlist_owner` varchar(50) NOT NULL,
-`wishlist_name` varchar(50) NOT NULL,
+`wishlist_name`varchar(50) NOT NULL,
+`wish_title` varchar(50) NOT NULL,
+`wish_description` varchar(50) NOT NULL,
+`wish_price` double NOT NULL,
+`wish_link` varchar(200),
 `is_reserved` boolean NOT NULL,
 PRIMARY KEY (`wishlist_name`),
 -- FOREIGN KEY (`wishlist_id`, `wishlist_name`) REFERENCES wishlist (`user_wishlist_id`, `user_wishlist_name`)
