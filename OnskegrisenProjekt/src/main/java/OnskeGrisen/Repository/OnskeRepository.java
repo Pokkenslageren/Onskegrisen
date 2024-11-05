@@ -1,4 +1,4 @@
 package OnskeGrisen.Repository;
 
-public class Repository {
+public class OnskeRepository {
 }
