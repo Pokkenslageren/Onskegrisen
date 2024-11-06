@@ -103,7 +103,7 @@ public class WishRepository {
         String query = "DELETE FROM wish WHERE wish_title = ? AND wishlist_name = ?";
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");;
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
                 System.out.println("Connection not established");
