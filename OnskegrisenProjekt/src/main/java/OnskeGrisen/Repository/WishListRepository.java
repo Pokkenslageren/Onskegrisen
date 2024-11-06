@@ -72,8 +72,8 @@ public class WishListRepository {
         return null;
     }
 
-    public void updateWishList(User user, String wishListName, String wishListDescription) {
-        String query = "UPDATE user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
+    public void updateWishList(User user, String newWishListName, String newWishListDescription, String wishListName) {
+        String query = "UPDATE user_wishlists SET user_wishlists_name = ?, wishlist_description = ? WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");;
@@ -82,9 +82,10 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, wishListName);
-            pstmt.setString(2, wishListDescription);
+            pstmt.setString(1, newWishListName);
+            pstmt.setString(2, newWishListDescription);
             pstmt.setString(3, wishListName);
+            pstmt.setString(4, user.getUsername());
             pstmt.executeUpdate();
             pstmt.close();
 
