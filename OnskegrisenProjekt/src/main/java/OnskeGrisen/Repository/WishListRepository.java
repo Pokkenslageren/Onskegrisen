@@ -59,6 +59,7 @@ public class WishListRepository {
                 String readWishListName = rs.getString("user_wishlists_name");
                 String readWishListDescription = rs.getString("user_wishlists_description");
                 user.getWishLists().add(new WishList(readWishListOwner, readWishListName, readWishListDescription));
+                //TODO - Sus metode
                 return user.getWishLists().get(user.getWishLists().indexOf(readWishListName));
 
             }
@@ -72,7 +73,7 @@ public class WishListRepository {
     }
 
     public void updateWishList(User user, String wishListName, String wishListDescription) {
-        String query = "INSERT INTO user_wishlists VALUES (?, ?, ?)";
+        String query = "UPDATE user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");;

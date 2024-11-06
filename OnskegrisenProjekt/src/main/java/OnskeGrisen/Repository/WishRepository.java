@@ -61,14 +61,17 @@ public class WishRepository {
                 double readWishPrice = rs.getDouble("wish_price");
                 String readWishLink = rs.getString("wish_link");
                 boolean isReserved = rs.getBoolean("is_reserved");
-                Wish wish = new Wish(readWishListOwner, readWishListName, readWishTitle, readWishDescription, readWishPrice, readWishLink, isReserved);
-                return wish;
+                return new Wish(readWishListOwner, readWishListName, readWishTitle, readWishDescription, readWishPrice, readWishLink, isReserved);
             }
         }
         catch (Exception e){
             e.getMessage();
         }
         return null;
+    }
+
+    public void updateWish(Wish wish, String wishListOwner, String wishListName, String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved){
+        String query = "INSERT INTO wish (wishlist_owner, wishlist_name, wish_title, wish_description, wish_price, wish_link, is_reserved) "
     }
 
 
