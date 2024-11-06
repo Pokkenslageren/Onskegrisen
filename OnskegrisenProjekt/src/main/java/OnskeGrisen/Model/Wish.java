@@ -7,14 +7,15 @@ public class Wish {
     private String wishLink;
     private boolean isReserved;
 
-    public Wish(String wishOwner,String wishListName,String wishTitle, String wishDescription, double wishPrice, boolean isReserved, String wishLink) {
+    public Wish(String wishOwner,String wishListName,String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved) {
         this.wishOwner = wishOwner;
         this.wishListName = wishListName;
         this.wishTitle = wishTitle;
         this.wishDescription = wishDescription;
         this.wishPrice = wishPrice;
-        this.isReserved = false;
         this.wishLink = wishLink;
+        this.isReserved = false;
+
     }
 
     public String getWishOwner() { return wishOwner; }

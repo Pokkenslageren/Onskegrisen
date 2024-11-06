@@ -22,7 +22,7 @@ public class WishListRepository {
     }
 
     public void createWishList(String wishListOwner, String wishListName, String wishListDescription) {
-        String query = "INSERT INTO user_wishlists VALUES (?, ?, ?)";
+        String query = "INSERT INTO user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");;
@@ -36,8 +36,6 @@ public class WishListRepository {
             pstmt.setString(3, wishListDescription);
             pstmt.executeUpdate();
             pstmt.close();
-
-
         }
         catch(Exception e) {
             System.out.println(e.getMessage());

@@ -1,5 +1,5 @@
 package OnskeGrisen.Repository;
 
-public class LoginRepository
-{
+public class LoginRepository {
+
 }
