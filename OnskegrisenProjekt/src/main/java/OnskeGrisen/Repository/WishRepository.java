@@ -71,8 +71,26 @@ public class WishRepository {
     }
 
     public void updateWish(Wish wish, String wishListOwner, String wishListName, String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved){
-        String query = 
+        String query =
     }
 
+    public void deleteWish(Wish wish, String wishTitle){
+        String query = "DELETE FROM wish WHERE wish_title = ?";
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");;
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if(conn == null) {
+                System.out.println("Connection not established");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,wishTitle);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
 
 }
