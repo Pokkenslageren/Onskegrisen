@@ -38,8 +38,8 @@ public class LoginRepository {
             return isUser; // returnerer dobbelt? Skal den ind i if-statement?
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
-        return isUser;
+        return false;
     }
 }

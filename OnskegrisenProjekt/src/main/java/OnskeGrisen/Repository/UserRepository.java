@@ -34,7 +34,7 @@ public class UserRepository {
 
        }
        catch(Exception e) {
-           System.out.println(e.getMessage());
+           e.printStackTrace();
        }
     }
 
@@ -61,7 +61,7 @@ public class UserRepository {
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
 
@@ -84,12 +84,12 @@ public class UserRepository {
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }
 
-    public void deleteUser(String userName) {
+    public void deleteUser(User user) {
         String query = "DELETE FROM users WHERE user_name = ?";
 
         try{
@@ -99,13 +99,13 @@ public class UserRepository {
                 System.out.println("Connection not established.");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, userName);
+            pstmt.setString(1, user.getUsername());
             pstmt.executeUpdate();
             pstmt.close();
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
 
     }

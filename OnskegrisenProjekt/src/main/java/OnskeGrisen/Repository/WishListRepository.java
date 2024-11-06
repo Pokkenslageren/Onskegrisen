@@ -38,7 +38,7 @@ public class WishListRepository {
             pstmt.close();
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
@@ -67,7 +67,7 @@ public class WishListRepository {
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
         return null;
     }
@@ -91,12 +91,12 @@ public class WishListRepository {
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 
     public void deleteWishList(User user, String wishListName) {
-        String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ?";
+        String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -106,12 +106,13 @@ public class WishListRepository {
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, wishListName);
+            pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
             pstmt.close();
 
         }
         catch(Exception e) {
-            System.out.println(e.getMessage());
+            e.printStackTrace();
         }
     }
 }
