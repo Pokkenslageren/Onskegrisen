@@ -25,7 +25,7 @@ public class WishListRepository {
         String query = "INSERT INTO user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");;
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
                 System.out.println("Connection not established");
@@ -46,7 +46,7 @@ public class WishListRepository {
         String query = "SELECT * FROM user_wishlists WHERE user_wishlists_name = ?";
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");;
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
                 System.out.println("Connection not established");
@@ -76,7 +76,7 @@ public class WishListRepository {
         String query = "UPDATE user_wishlists SET user_wishlists_name = ?, wishlist_description = ? WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");;
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
                 System.out.println("Connection not established");
@@ -99,7 +99,7 @@ public class WishListRepository {
         String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ?";
 
         try{
-            Class.forName("com.mysql.cj.jdbc.Driver");;
+            Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
             if(conn == null) {
                 System.out.println("Connection not established");
