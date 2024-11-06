@@ -12,13 +12,13 @@ PRIMARY KEY (`user_name`),
 -- FOREIGN KEY (`user_name`, `user_password`) REFERENCES login(`login_name`, `login_password`)
 );
 
-CREATE TABLE IF NOT EXISTS `user_wishlists` (
-`user_wishlists_owner`varchar(50) NOT NULL,
-`user_wishlists_name` varchar(50) NOT NULL,
+CREATE TABLE IF NOT EXISTS `user_wishlist` (
+`user_wishlist_owner`varchar(50) NOT NULL,
+`user_wishlist_name` varchar(50) NOT NULL,
 `wishlist_description` varchar(400),
-PRIMARY KEY (`user_wishlists_name`),
+PRIMARY KEY (`user_wishlist_name`),
 -- FOREIGN KEY (`user_wishlists_name`) REFERENCES users(`user_name`)
-FOREIGN KEY (`user_wishlists_owner`) REFERENCES users(`user_name`)
+FOREIGN KEY (`user_wishlist_owner`) REFERENCES users(`user_name`)
 );
 
 CREATE TABLE IF NOT EXISTS `wish` (
@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS `wish` (
 `is_reserved` boolean NOT NULL,
 PRIMARY KEY (`wishlist_name`),
 -- FOREIGN KEY (`wishlist_id`, `wishlist_name`) REFERENCES wishlist (`user_wishlist_id`, `user_wishlist_name`)
-FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlists(`user_wishlists_name`)
+FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlists(`user_wishlist_name`)
 
 );

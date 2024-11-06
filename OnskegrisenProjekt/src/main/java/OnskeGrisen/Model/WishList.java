@@ -2,24 +2,24 @@ package OnskeGrisen.Model;
 import java.util.*;
 
 public class WishList {
-    private String wishListOwner;
-    private String wishListName;
+    private String userWishListOwner;
+    private String userWishListName;
     private String wishListDescription;
     private ArrayList<Wish> wishList;
 
-    public WishList(String wishListOwner, String wishListName, String wishListDescription) {
-        this.wishListOwner = wishListOwner;
-        this.wishListName = wishListName;
+    public WishList(String userWishListOwner, String userWishListName, String wishListDescription) {
+        this.userWishListOwner = userWishListOwner;
+        this.userWishListName = userWishListName;
         this.wishListDescription = wishListDescription;
         this.wishList = new ArrayList<>();
 
     }
 
-    public String getWishListOwner() {
-        return wishListOwner;
+    public String getUserWishListOwner() {
+        return userWishListOwner;
     }
-    public String getWishListName() {
-        return wishListName;
+    public String getUserWishListName() {
+        return userWishListName;
     }
     public String getWishListDescription() {
         return wishListDescription;
@@ -28,11 +28,11 @@ public class WishList {
         return wishList;
     }
 
-    public void setWishListOwner(String wishListOwner) {
-        this.wishListOwner = wishListOwner;
+    public void setUserWishListOwner(String userWishListOwner) {
+        this.userWishListOwner = userWishListOwner;
     }
-    public void setWishListName(String wishListName) {
-        this.wishListName = wishListName;
+    public void setUserWishListName(String userWishListName) {
+        this.userWishListName = userWishListName;
     }
     public void setWishListDescription(String wishListDescription) {
         this.wishListDescription = wishListDescription;

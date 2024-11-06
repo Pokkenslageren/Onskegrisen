@@ -21,7 +21,7 @@ public class WishListRepository {
 
     }
 
-    public void createWishList(String wishListOwner, String wishListName, String wishListDescription) {
+    public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription) {
         String query = "INSERT INTO user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
 
         try{
@@ -31,8 +31,8 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, wishListOwner);
-            pstmt.setString(2, wishListName);
+            pstmt.setString(1, userWishListOwner);
+            pstmt.setString(2, userWishListName);
             pstmt.setString(3, wishListDescription);
             pstmt.executeUpdate();
             pstmt.close();
@@ -42,7 +42,7 @@ public class WishListRepository {
         }
     }
 
-    public WishList readWishListByName(User user, String wishListName) {
+    public WishList readWishListByName(User user, String userWishListName) {
         String query = "SELECT * FROM user_wishlists WHERE user_wishlists_name = ?";
 
         try{
@@ -52,15 +52,15 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, wishListName);
+            pstmt.setString(1, userWishListName);
             ResultSet rs = pstmt.executeQuery();
             while(rs.next()) {
-                String readWishListOwner = rs.getString("user_wishlists_owner");
-                String readWishListName = rs.getString("user_wishlists_name");
+                String readUserWishListOwner = rs.getString("user_wishlists_owner");
+                String readUserWishListName = rs.getString("user_wishlists_name");
                 String readWishListDescription = rs.getString("user_wishlists_description");
-                user.getWishLists().add(new WishList(readWishListOwner, readWishListName, readWishListDescription));
+                user.getWishLists().add(new WishList(readUserWishListOwner, readUserWishListName, readWishListDescription));
                 //TODO - Sus metode
-                return user.getWishLists().get(user.getWishLists().indexOf(readWishListName));
+                return user.getWishLists().get(user.getWishLists().indexOf(readUserWishListName));
 
             }
             rs.close();
@@ -72,7 +72,7 @@ public class WishListRepository {
         return null;
     }
 
-    public void updateWishList(User user, String newWishListName, String newWishListDescription, String wishListName) {
+    public void updateWishList(User user, String newUserWishListName, String newWishListDescription, String userWishListName) {
         String query = "UPDATE user_wishlists SET user_wishlists_name = ?, wishlist_description = ? WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
 
         try{
@@ -82,9 +82,9 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, newWishListName);
+            pstmt.setString(1, newUserWishListName);
             pstmt.setString(2, newWishListDescription);
-            pstmt.setString(3, wishListName);
+            pstmt.setString(3, userWishListName);
             pstmt.setString(4, user.getUsername());
             pstmt.executeUpdate();
             pstmt.close();
@@ -95,7 +95,7 @@ public class WishListRepository {
         }
     }
 
-    public void deleteWishList(User user, String wishListName) {
+    public void deleteWishList(User user, String userWishListName) {
         String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
 
         try{
@@ -105,7 +105,7 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, wishListName);
+            pstmt.setString(1, userWishListName);
             pstmt.setString(2, user.getUsername());
             pstmt.executeUpdate();
             pstmt.close();
