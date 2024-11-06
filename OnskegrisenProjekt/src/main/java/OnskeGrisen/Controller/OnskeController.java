@@ -15,9 +15,7 @@ public class OnskeController {
     public OnskeController(OnskeApplication onskeApplication){
         this.onskeApplication = onskeApplication;
     }
-    public static void main(String[] args){
-        SpringApplication.run(OnskeController.class, args);
-    }
+
 
     @GetMapping("/login")
     public String login(){
