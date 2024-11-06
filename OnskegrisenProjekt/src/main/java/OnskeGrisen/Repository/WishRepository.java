@@ -71,7 +71,7 @@ public class WishRepository {
     }
 
     public void updateWish(Wish wish, String wishListOwner, String wishListName, String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved){
-        String query = "INSERT INTO wish (wishlist_owner, wishlist_name, wish_title, wish_description, wish_price, wish_link, is_reserved) "
+        String query = 
     }
 
 
