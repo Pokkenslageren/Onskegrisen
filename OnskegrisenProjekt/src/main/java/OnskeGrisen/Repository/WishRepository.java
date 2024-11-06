@@ -91,7 +91,7 @@ public class WishRepository {
             pstmt.close();
 
         } catch (Exception e) {
-            e.getMessage();
+            System.out.println(e.getMessage());
         }
     }
 
