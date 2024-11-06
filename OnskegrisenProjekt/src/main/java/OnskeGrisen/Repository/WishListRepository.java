@@ -43,7 +43,7 @@ public class WishListRepository {
     }
 
     public WishList readWishListByName(User user, String userWishListName) {
-        String query = "SELECT * FROM user_wishlists WHERE user_wishlists_name = ?";
+        String query = "SELECT * FROM user_wishlists WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -52,18 +52,21 @@ public class WishListRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, userWishListName);
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, userWishListName);
             ResultSet rs = pstmt.executeQuery();
-            while(rs.next()) {
-                String readUserWishListOwner = rs.getString("user_wishlists_owner");
-                String readUserWishListName = rs.getString("user_wishlists_name");
-                String readWishListDescription = rs.getString("user_wishlists_description");
-                user.getWishLists().add(new WishList(readUserWishListOwner, readUserWishListName, readWishListDescription));
-                //TODO - Sus metode
-                return user.getWishLists().get(user.getWishLists().indexOf(readUserWishListName));
+
+            if (rs.next()) {
+                String readUserWishListOwner = rs.getString("user_wishlist_owner");
+                String readUserWishListName = rs.getString("user_wishlist_name");
+                String readWishListDescription = rs.getString("wishlist_description");
+
+                return new WishList(readUserWishListOwner, readUserWishListName, readWishListDescription);
 
             }
             rs.close();
+            pstmt.close();
+            conn.close();
 
         }
         catch(Exception e) {

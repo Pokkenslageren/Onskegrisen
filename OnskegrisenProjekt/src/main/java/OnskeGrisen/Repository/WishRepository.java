@@ -1,6 +1,5 @@
 package OnskeGrisen.Repository;
 
-import OnskeGrisen.Model.User;
 import OnskeGrisen.Model.Wish;
 
 import java.sql.Connection;

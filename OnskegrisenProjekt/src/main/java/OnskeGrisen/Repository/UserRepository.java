@@ -51,7 +51,7 @@ public class UserRepository {
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, userName);
             ResultSet rs = pstmt.executeQuery();
-            while(rs.next()) {
+            if (rs.next()) {
                 String readUserName = rs.getString("user_name");
                 String readPassword = rs.getString("user_password");
                 users.add(new User(readUserName, readPassword));
