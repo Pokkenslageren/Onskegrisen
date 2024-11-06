@@ -1,14 +1,13 @@
 package OnskeGrisen.Model;
-import java.util.*;
 
 public class Wish {
-    private String wishOwner, wishListName, wishTitle, wishDescription;
+    private String wishListOwner, wishListName, wishTitle, wishDescription;
     private double wishPrice;
     private String wishLink;
     private boolean isReserved;
 
-    public Wish(String wishOwner,String wishListName,String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved) {
-        this.wishOwner = wishOwner;
+    public Wish(String wishListOwner,String wishListName,String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved) {
+        this.wishListOwner = wishListOwner;
         this.wishListName = wishListName;
         this.wishTitle = wishTitle;
         this.wishDescription = wishDescription;
@@ -18,7 +17,7 @@ public class Wish {
 
     }
 
-    public String getWishOwner() { return wishOwner; }
+    public String getWishListOwner() { return wishListOwner; }
     public String getWishListName() { return wishListName; }
     public String getWishTitle() {
         return wishTitle;
@@ -36,7 +35,7 @@ public class Wish {
         return isReserved;
     }
 
-    public void setWishOwner(String wishOwner) { this.wishOwner = wishOwner; }
+    public void setWishOwner(String wishOwner) { this.wishListOwner = wishOwner; }
     public void setWishListName(String wishListName) { this.wishListName = wishListName; }
     public void setWishTitle(String wishTitle) {
         this.wishTitle = wishTitle;
