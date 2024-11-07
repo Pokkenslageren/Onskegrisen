@@ -107,4 +107,8 @@ public class UserRepository {
 
     }
 
+    public ArrayList<User> getUsers() {
+        return users;
+    }
+
 }
