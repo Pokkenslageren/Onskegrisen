@@ -11,6 +11,6 @@ import org.springframework.stereotype.Service;
 public class OnskeApplication {
 
     public static void main(String[] args){
-        SpringApplication.run(OnskeController.class, args);
+        SpringApplication.run(OnskeApplication.class, args);
     }
 }
