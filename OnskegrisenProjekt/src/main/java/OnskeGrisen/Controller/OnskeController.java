@@ -1,6 +1,5 @@
 package OnskeGrisen.Controller;
 
-
 import OnskeGrisen.Model.User;
 import OnskeGrisen.Service.OnskeService;
 import org.springframework.boot.SpringApplication;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import OnskeGrisen.OnskeApplication;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
 @Controller
@@ -20,33 +20,33 @@ public class OnskeController {
         this.onskeService = onskeService;
     }
 
-    @GetMapping("/user/register")
+    @GetMapping("/{user}/register")
     public String register(Model model) {
         model.addAttribute("user","userlist");
         model.addAttribute("users", onskeService.getUserList());
         return "register-user";
     }
     // todo sus postmapping URL. change?
-    @PostMapping("user/register")
+    @PostMapping("{user}/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
         return "redirect:/user";
     }
 
-    @GetMapping("/user/update")
+    @GetMapping("/{user}/update")
     public String updateUser(String name, Model model) {
         model.addAttribute("userToBeUpdated", onskeService.readUser(name));
         return "update-user";
     }
 
-    @PostMapping("/user/update")
+    @PostMapping("/{user}/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
         return "redirect:/user";
     }
 
-    @GetMapping("/user/delete") // undersøg om dette skal være post- eller get-mapping.
-    public String deleteUser(User user) { // hvad med @path variable?
+    @GetMapping("/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping.
+    public String deleteUser(User user) { // todo hvad med @path variable?
         onskeService.deleteUser(user);
         return "redirect:/landing-page";
     }
@@ -56,48 +56,48 @@ public class OnskeController {
         return "login";
     }
 
-    @GetMapping("/login/user")
+    @GetMapping("/{user}")
     public String user(){
         return "user";
     }
 
-    @GetMapping("/login/user/{wishlist}")
+    @GetMapping("/login/{user}/{wishlist}")
     public String wishlist(){
         return "wishlist";
     }
 
-    @GetMapping("/login/user/{wish}")
+    @GetMapping("/login/{user}/{wish}")
     public String wish(){
         return "wish";
     }
 
-    @PostMapping("/login/user/createwishlist")
+    @PostMapping("/login/{user}/createwishlist")
     public String createwishlist(){
-        return "createwishlist";
+        return "create-wishlist";
     }
 
-    @PostMapping("/login/user/updatewishlist")
+    @PostMapping("/login/{user}/updatewishlist")
     public String updatewishlist(){
-        return "updatewishlist";
+        return "update-wishlist";
     }
 
-    @PostMapping("/login/user/deletewishlist")
+    @PostMapping("/login/{user}/deletewishlist")
     public String deletewishlist(){
-        return "deletewishlist";
+        return "redirect:/wishlists";
     }
 
-    @PostMapping("/login/user/{wishlist}/createwish")
+    @PostMapping("/login/{user}/{wishlist}/createwish")
     public String createwish(){
-        return "createwish";
+        return "create-wish";
     }
 
-    @PostMapping("/login/user/{wishlist}/updatewish")
+    @PostMapping("/login/{user}/{wishlist}/updatewish")
     public String updatewish(){
-        return "updatewish";
+        return "update-wish";
     }
 
-    @PostMapping("/login/user/{wishlist}/deletewish")
-    public String deletewish(){
-        return "deletewish";
+    @PostMapping("/login/{user}/{wishlist}/deletewish")
+    public String deletewish(RedirectAttributes redirectAttributes){
+        return "redirect:/wishlist";
         }
 }
