@@ -21,7 +21,14 @@ public class OnskeService {
 
     public ArrayList<User> getUserList() {
         return userRepository.getUsers();
+    }
 
+    public User readUser(String userName) {
+        return userRepository.readUserByUsername(userName);
+    }
+
+    public void updateUser(User user, String userName) {
+        userRepository.updateUser(user, userName);
     }
 
     public void registerUser(User user) {

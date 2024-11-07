@@ -36,6 +36,18 @@ public class OnskeController {
         return "redirect:/user";
     }
 
+    @GetMapping("/user/update")
+    public String updateUser(String name, Model model) {
+        model.addAttribute("userToBeUpdated", onskeService.readUser(name));
+        return "update-user";
+    }
+
+    @PostMapping("/user/update")
+    public String updateUser(@ModelAttribute User user) {
+        onskeService.updateUser(user, user.getUsername());
+        return "redirect:/user";
+    }
+
     @GetMapping("/login")
     public String login(){
         return "login";
