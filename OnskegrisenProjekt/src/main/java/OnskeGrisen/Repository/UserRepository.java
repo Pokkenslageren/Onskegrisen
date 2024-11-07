@@ -13,9 +13,6 @@ public class UserRepository {
     String dbPassword = "";
     Connection conn;
 
-    public UserRepository() {
-
-    }
 
     public void createUser(User user) {
        String query = "INSERT INTO users (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?)";

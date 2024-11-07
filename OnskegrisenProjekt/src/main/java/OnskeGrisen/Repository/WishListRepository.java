@@ -17,9 +17,6 @@ public class WishListRepository {
     String dbPassword = "";
     Connection conn;
 
-    public WishListRepository() {
-
-    }
 
     public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription) {
         String query = "INSERT INTO user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
