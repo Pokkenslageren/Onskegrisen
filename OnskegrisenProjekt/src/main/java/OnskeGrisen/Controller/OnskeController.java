@@ -20,14 +20,14 @@ public class OnskeController {
         this.onskeService = onskeService;
     }
 
-    @GetMapping("/{user}/register")
+    @GetMapping("/register")
     public String register(Model model) {
         model.addAttribute("user","userlist");
         model.addAttribute("users", onskeService.getUserList());
         return "register-user";
     }
     // todo sus postmapping URL. change?
-    @PostMapping("{user}/register")
+    @PostMapping("/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
         return "redirect:/user";
