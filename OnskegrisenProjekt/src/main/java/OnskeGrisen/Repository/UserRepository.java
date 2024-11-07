@@ -15,24 +15,30 @@ public class UserRepository {
 
 
     public void createUser(User user) {
-       String query = "INSERT INTO users (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?)";
 
-       try{
-           Class.forName("com.mysql.cj.jdbc.Driver");
-           conn = DriverManager.getConnection(database, dbUsername, dbPassword);
-           if (conn == null) {
-               System.out.println("connection not established.");
-           }
-           PreparedStatement pstmt = conn.prepareStatement(query);
-           pstmt.setString(1, user.getUsername());
-           pstmt.setString(2, user.getPassword());
-           pstmt.executeUpdate(query);
-           pstmt.close();
+        String wantedUserName = user.getUsername();
+        if (readUserByUsername(wantedUserName).getUsername().equals(wantedUserName)) {
+            System.out.println("Username is not available.");
 
-       }
-       catch(Exception e) {
-           e.printStackTrace();
-       }
+        } else {
+            String query = "INSERT INTO users (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?)";
+
+            try {
+                Class.forName("com.mysql.cj.jdbc.Driver");
+                conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+                if (conn == null) {
+                    System.out.println("connection not established.");
+                }
+                PreparedStatement pstmt = conn.prepareStatement(query);
+                pstmt.setString(1, user.getUsername());
+                pstmt.setString(2, user.getPassword());
+                pstmt.executeUpdate(query);
+                pstmt.close();
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
     }
 
 

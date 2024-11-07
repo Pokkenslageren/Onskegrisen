@@ -29,10 +29,11 @@ public class OnskeController {
         model.addAttribute("users", onskeService.getUserList());
         return "register-user";
     }
-
+    // todo sus postmapping URL. change?
     @PostMapping("user/register")
     public String register(@ModelAttribute User user) {
-
+        onskeService.registerUser(user);
+        return "redirect:/user";
     }
 
     @GetMapping("/login")
