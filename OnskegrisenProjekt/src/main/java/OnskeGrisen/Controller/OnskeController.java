@@ -1,9 +1,13 @@
 package OnskeGrisen.Controller;
 
 
+import OnskeGrisen.Model.User;
+import OnskeGrisen.Service.OnskeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import OnskeGrisen.OnskeApplication;
@@ -13,15 +17,24 @@ import OnskeGrisen.OnskeApplication;
 @RequestMapping("")
 public class OnskeController {
 
-    private final OnskeApplication onskeApplication;
+    private final OnskeService onskeService;
 
-
-    public OnskeController(OnskeApplication onskeApplication){
-        this.onskeApplication = onskeApplication;
+    public OnskeController(OnskeService onskeService){
+        this.onskeService = onskeService;
     }
 
     @GetMapping("/user/register")
-    public String register(){ return ""; }
+    public String register(Model model) {
+        model.addAttribute("user","userlist");
+        model.addAttribute("users", onskeService.getUserList());
+        return "register-user";
+    }
+    // todo sus postmapping URL. change?
+    @PostMapping("user/register")
+    public String register(@ModelAttribute User user) {
+        onskeService.registerUser(user);
+        return "redirect:/user";
+    }
 
     @GetMapping("/login")
     public String login(){
