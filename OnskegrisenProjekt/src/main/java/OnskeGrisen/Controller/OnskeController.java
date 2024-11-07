@@ -10,12 +10,13 @@ import OnskeGrisen.OnskeApplication;
 @Controller
 @RequestMapping("")
 public class OnskeController {
+
     private final OnskeApplication onskeApplication;
+
 
     public OnskeController(OnskeApplication onskeApplication){
         this.onskeApplication = onskeApplication;
     }
-
 
     @GetMapping("/login")
     public String login(){
