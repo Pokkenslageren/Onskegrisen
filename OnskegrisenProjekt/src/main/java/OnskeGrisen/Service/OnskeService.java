@@ -31,6 +31,10 @@ public class OnskeService {
         userRepository.updateUser(user, userName);
     }
 
+    public void deleteUser(User user) {
+        userRepository.deleteUser(user);
+    }
+
     public void registerUser(User user) {
         userRepository.createUser(user);
     }

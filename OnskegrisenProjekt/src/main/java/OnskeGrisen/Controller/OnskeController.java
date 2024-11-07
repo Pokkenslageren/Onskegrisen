@@ -6,10 +6,7 @@ import OnskeGrisen.Service.OnskeService;
 import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import OnskeGrisen.OnskeApplication;
 
 
@@ -45,7 +42,13 @@ public class OnskeController {
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
-        return "redirect:/user"; 
+        return "redirect:/user";
+    }
+
+    @GetMapping("/user/delete") // undersøg om dette skal være post- eller get-mapping.
+    public String deleteUser(User user) { // hvad med @path variable?
+        onskeService.deleteUser(user);
+        return "redirect:/landing-page";
     }
 
     @GetMapping("/login")
