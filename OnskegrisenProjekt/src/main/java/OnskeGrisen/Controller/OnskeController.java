@@ -45,7 +45,7 @@ public class OnskeController {
     @PostMapping("/user/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
-        return "redirect:/user";
+        return "redirect:/user"; 
     }
 
     @GetMapping("/login")
