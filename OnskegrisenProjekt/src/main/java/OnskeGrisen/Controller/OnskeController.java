@@ -45,7 +45,7 @@ public class OnskeController {
         return "redirect:/user";
     }
 
-    @GetMapping("/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping.
+    @GetMapping("/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
     public String deleteUser(User user) { // todo hvad med @path variable?
         onskeService.deleteUser(user);
         return "redirect:/landing-page";
