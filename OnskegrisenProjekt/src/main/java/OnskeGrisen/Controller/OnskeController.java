@@ -2,11 +2,9 @@ package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
 import OnskeGrisen.Service.OnskeService;
-import org.springframework.boot.SpringApplication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import OnskeGrisen.OnskeApplication;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -33,6 +31,13 @@ public class OnskeController {
         return "redirect:/user";
     }
 
+    @GetMapping("/user")
+    public String readUser(String name, Model model){
+        model.addAttribute("bruger", "james");
+        model.addAttribute("user", onskeService.readUser(name));
+        return "user-page";
+    }
+
     @GetMapping("/{user}/update")
     public String updateUser(String name, Model model) {
         model.addAttribute("userToBeUpdated", onskeService.readUser(name));
@@ -56,10 +61,6 @@ public class OnskeController {
         return "login";
     }
 
-    @GetMapping("/{user}")
-    public String user(){
-        return "user";
-    }
 
     @GetMapping("/login/{user}/{wishlist}")
     public String wishlist(){

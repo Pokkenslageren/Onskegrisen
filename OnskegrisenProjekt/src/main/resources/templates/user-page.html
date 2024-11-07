@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>User</title>
+
+</head>
+<body>
+<h1 th:text="${user.getUsername()}"></h1>
+<p th:text="${user.getUsername()}"></p>
+<tr th:each="wishlist : ${user.getWishLists()}">
+    <td th:text="${wishlist.getUserWishListName()}"></td>
+</tr>
+
+
+
+
+
+
+</body>
+</html>
