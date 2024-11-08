@@ -19,7 +19,7 @@ public class WishListRepository {
 
 
     public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription) {
-        String query = "INSERT INTO user_wishlists (user_wishlists_owner, user_wishlists_name, wishlist_description) VALUES (?, ?, ?)";
+        String query = "INSERT INTO user_wishlist (user_wishlist_owner, user_wishlist_name, wishlist_description) VALUES (?, ?, ?)";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -40,7 +40,7 @@ public class WishListRepository {
     }
 
     public WishList readWishListByName(User user, String userWishListName) {
-        String query = "SELECT * FROM user_wishlists WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
+        String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -73,7 +73,7 @@ public class WishListRepository {
     }
 
     public void updateWishList(User user, String newUserWishListName, String newWishListDescription, String userWishListName) {
-        String query = "UPDATE user_wishlists SET user_wishlists_name = ?, wishlist_description = ? WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
+        String query = "UPDATE user_wishlist SET user_wishlist_name = ?, wishlist_description = ? WHERE user_wishlist_name = ? AND user_wishlist_owner = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -96,7 +96,7 @@ public class WishListRepository {
     }
 
     public void deleteWishList(User user, String userWishListName) {
-        String query = "DELETE FROM user_wishlists WHERE user_wishlists_name = ? AND user_wishlists_owner = ?";
+        String query = "DELETE FROM user_wishlist WHERE user_wishlist_name = ? AND user_wishlist_owner = ?";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -112,6 +112,33 @@ public class WishListRepository {
 
         }
         catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setOwnerWishlists(User user){
+        String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("Connection not established");
+            }
+            ArrayList<WishList> allWishLists = new ArrayList<>();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, user.getUsername());
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                String readUserWishListOwner = rs.getString("user_wishlist_owner");
+                String readUserWishListName = rs.getString("user_wishlist_name");
+                String readWishListDescription = rs.getString("wishlist_description");
+                allWishLists.add(new WishList(readUserWishListOwner,readUserWishListName,readWishListDescription));
+            }
+            user.setWishLists(allWishLists);
+
+        }
+        catch (Exception e){
             e.printStackTrace();
         }
     }

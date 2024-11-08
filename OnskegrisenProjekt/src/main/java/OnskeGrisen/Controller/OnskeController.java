@@ -1,6 +1,7 @@
 package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
+import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Service.OnskeService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -40,18 +41,22 @@ public class OnskeController {
         return "redirect:/user";
     }
 
-    @GetMapping("/users/{user}")
+/*    @GetMapping("/users/{user}") //virker
     public ResponseEntity<User> readUser(@PathVariable String user){
         User bruger = onskeService.readUser(user);
         return new ResponseEntity<>(bruger, HttpStatus.OK);
-    }
+    }*/
 
-/*    @GetMapping("/users/{user}/") //remove pathvariable?
+    @GetMapping("/users/{user}")
     public String readUser(@PathVariable String user, Model model){
         User bruger = onskeService.readUser(user);
+        onskeService.fetchOwnerWishLists(bruger);
+        model.addAttribute("titel", bruger.getUsername());
         model.addAttribute("bruger", bruger);
+        model.addAttribute("onskelister", bruger.getWishLists());
+
         return "user-page";
-    }*/
+    }
 
 
 
