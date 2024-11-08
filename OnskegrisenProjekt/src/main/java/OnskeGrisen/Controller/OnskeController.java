@@ -41,15 +41,15 @@ public class OnskeController {
     }
 
     @GetMapping("/users/{user}")
-    public ResponseEntity<User> readUser(@PathVariable String name){
-        User user = onskeService.readUser(name);
-        return new ResponseEntity<>(user, HttpStatus.OK);
+    public ResponseEntity<User> readUser(@PathVariable String user){
+        User bruger = onskeService.readUser(user);
+        return new ResponseEntity<>(bruger, HttpStatus.OK);
     }
 
 /*    @GetMapping("/users/{user}/") //remove pathvariable?
-    public String readUser(@PathVariable String name, Model model){
-        User user = onskeService.readUser(name);
-        model.addAttribute("user", user);
+    public String readUser(@PathVariable String user, Model model){
+        User bruger = onskeService.readUser(user);
+        model.addAttribute("bruger", bruger);
         return "user-page";
     }*/
 

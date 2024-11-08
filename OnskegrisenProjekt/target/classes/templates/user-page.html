@@ -6,12 +6,13 @@
 
 </head>
 <body>
-<h1 th:text="${user.getUsername()}"></h1>
-<p th:text="${user.getUsername()}"></p>
-<tr th:each="wishlist : ${user.getWishLists()}">
-    <td th:text="${wishlist.getUserWishListName()}"></td>
-</tr>
+<tbody>
+<tr th:each="user : ${bruger}">
+    <td id="test" th:text="${user.get}"></td>
+    <td th:text="${user.getPassword()}"></td>
 
+</tr>
+</tbody>
 
 
 
