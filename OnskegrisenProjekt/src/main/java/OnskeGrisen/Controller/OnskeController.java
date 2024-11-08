@@ -2,6 +2,8 @@ package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
 import OnskeGrisen.Service.OnskeService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,25 +20,40 @@ public class OnskeController {
         this.onskeService = onskeService;
     }
 
-    @GetMapping("/register")
+    @GetMapping("/users")
+    public String readAllUsers(Model model){
+        model.addAttribute("titel","List of users");
+        model.addAttribute("users",onskeService.readAllUsers());
+        return "user-list";
+    }
+
+    @GetMapping("/users/register")
     public String register(Model model) {
         model.addAttribute("user","userlist");
-        model.addAttribute("users", onskeService.getUserList());
+        model.addAttribute("users", onskeService.readAllUsers());
         return "register-user";
     }
     // todo sus postmapping URL. change?
-    @PostMapping("/register")
+    @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
         return "redirect:/user";
     }
 
-    @GetMapping("/user")
-    public String readUser(String name, Model model){
-        model.addAttribute("bruger", "james");
-        model.addAttribute("user", onskeService.readUser(name));
-        return "user-page";
+    @GetMapping("/users/{user}")
+    public ResponseEntity<User> readUser(@PathVariable String name){
+        User user = onskeService.readUser(name);
+        return new ResponseEntity<>(user, HttpStatus.OK);
     }
+
+/*    @GetMapping("/users/{user}/") //remove pathvariable?
+    public String readUser(@PathVariable String name, Model model){
+        User user = onskeService.readUser(name);
+        model.addAttribute("user", user);
+        return "user-page";
+    }*/
+
+
 
     @GetMapping("/{user}/update")
     public String updateUser(String name, Model model) {

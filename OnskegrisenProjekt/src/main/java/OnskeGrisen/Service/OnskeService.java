@@ -19,8 +19,8 @@ public class OnskeService {
     private final WishListRepository wishListRepository = new WishListRepository();
     private final LoginRepository loginRepository = new LoginRepository();
 
-    public ArrayList<User> getUserList() {
-        return userRepository.getUsers();
+    public ArrayList<User> readAllUsers() {
+        return userRepository.readAllUsers();
     }
 
     public User readUser(String userName) {

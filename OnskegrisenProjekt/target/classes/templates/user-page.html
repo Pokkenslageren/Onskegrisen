@@ -6,9 +6,18 @@
 
 </head>
 <body>
-<h1 th:text="${bruger}"></h1>
+<h1 th:text="${user.getUsername()}"></h1>
+<p th:text="${user.getUsername()}"></p>
+<tr th:each="wishlist : ${user.getWishLists()}">
+    <td th:text="${wishlist.getUserWishListName()}"></td>
+</tr>
 
 
+
+
+<form action="http://localhost:8080/">
+    <input type="submit" value="tilbage"/>
+</form>
 
 
 

@@ -14,7 +14,7 @@ public class WishListRepository {
     ArrayList<Wish> wishes = new ArrayList<>();
     String database = "jdbc:mysql://localhost:3306/onskegrisen";
     String dbUsername = "root";
-    String dbPassword = "";
+    String dbPassword = "Illcosby91";
     Connection conn;
 
 
