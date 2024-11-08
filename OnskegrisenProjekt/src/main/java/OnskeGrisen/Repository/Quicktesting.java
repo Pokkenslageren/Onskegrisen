@@ -18,7 +18,7 @@ public class Quicktesting {
 
         //wishListRepository.createWishList("James","Fødselsdag","Tillykke");
         //wishRepository.createWish("James","Fødselsdag","Iphone15", "Ny telefon,", 1000.0, "fafafa", true);
-        //wishRepository.createWish("James","Fødselsdag","Nye briller", "Så jeg kan se", 500.0, "Synoptik.dk", false);
+        wishRepository.createWish("James","Juleønsker","Nye briller", "Så jeg kan se", 500.0, "Synoptik.dk", false);
 
     }
 }
