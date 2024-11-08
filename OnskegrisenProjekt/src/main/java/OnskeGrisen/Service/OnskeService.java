@@ -40,7 +40,7 @@ public class OnskeService {
         userRepository.createUser(user);
     }
 
-    //public WishList readWishlist(User user){return wishListRepository.readWishListByName(user);}
+    public WishList readWishlist(User user, String name){return wishListRepository.readWishListByName(user, name);}
 
     public void fetchOwnerWishLists(User user){
         wishListRepository.setOwnerWishlists(user);

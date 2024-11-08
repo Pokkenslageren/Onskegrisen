@@ -66,17 +66,28 @@ public class OnskeController {
         return "update-user";
     }
 
-    @PostMapping("/{user}/update")
+    @PostMapping("users/{user}/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
         return "redirect:/user";
     }
 
-    @GetMapping("/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    @GetMapping("users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
     public String deleteUser(User user) { // todo hvad med @path variable?
+        //onskeService.deleteWish
+        //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
         return "redirect:/landing-page";
     }
+
+    @GetMapping("users/{user}/{wishlist}")
+    public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model){
+        User bruger = onskeService.readUser(user);
+        WishList onskeliste = onskeService.readWishlist(bruger, wishlist);
+        return "wishlist";
+    }
+
+
 
     @GetMapping("/login")
     public String login(){
