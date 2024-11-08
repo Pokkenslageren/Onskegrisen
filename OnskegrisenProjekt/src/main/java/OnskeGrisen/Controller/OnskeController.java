@@ -1,12 +1,13 @@
 package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
+import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Service.OnskeService;
-import org.springframework.boot.SpringApplication;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import OnskeGrisen.OnskeApplication;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 
@@ -20,18 +21,44 @@ public class OnskeController {
         this.onskeService = onskeService;
     }
 
-    @GetMapping("/register")
+    @GetMapping("/users")
+    public String readAllUsers(Model model){
+        model.addAttribute("titel","List of users");
+        model.addAttribute("users",onskeService.readAllUsers());
+        return "user-list";
+    }
+
+    @GetMapping("/users/register")
     public String register(Model model) {
         model.addAttribute("user","userlist");
-        model.addAttribute("users", onskeService.getUserList());
+        model.addAttribute("users", onskeService.readAllUsers());
         return "register-user";
     }
     // todo sus postmapping URL. change?
-    @PostMapping("/register")
+    @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
         return "redirect:/user";
     }
+
+/*    @GetMapping("/users/{user}") //virker
+    public ResponseEntity<User> readUser(@PathVariable String user){
+        User bruger = onskeService.readUser(user);
+        return new ResponseEntity<>(bruger, HttpStatus.OK);
+    }*/
+
+    @GetMapping("/users/{user}")
+    public String readUser(@PathVariable String user, Model model){
+        User bruger = onskeService.readUser(user);
+        onskeService.fetchOwnerWishLists(bruger);
+        model.addAttribute("titel", bruger.getUsername());
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onskelister", bruger.getWishLists());
+
+        return "user-page";
+    }
+
+
 
     @GetMapping("/{user}/update")
     public String updateUser(String name, Model model) {
@@ -39,27 +66,34 @@ public class OnskeController {
         return "update-user";
     }
 
-    @PostMapping("/{user}/update")
+    @PostMapping("users/{user}/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
         return "redirect:/user";
     }
 
-    @GetMapping("/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    @GetMapping("users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
     public String deleteUser(User user) { // todo hvad med @path variable?
+        //onskeService.deleteWish
+        //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
         return "redirect:/landing-page";
     }
+
+    @GetMapping("users/{user}/{wishlist}")
+    public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model){
+        User bruger = onskeService.readUser(user);
+        WishList onskeliste = onskeService.readWishlist(bruger, wishlist);
+        return "wishlist";
+    }
+
+
 
     @GetMapping("/login")
     public String login(){
         return "login";
     }
 
-    @GetMapping("/{user}")
-    public String user(){
-        return "user";
-    }
 
     @GetMapping("/login/{user}/{wishlist}")
     public String wishlist(){

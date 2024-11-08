@@ -1,6 +1,7 @@
 package OnskeGrisen.Service;
 
 import OnskeGrisen.Model.User;
+import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Repository.LoginRepository;
 import OnskeGrisen.Repository.UserRepository;
 import OnskeGrisen.Repository.WishListRepository;
@@ -19,8 +20,8 @@ public class OnskeService {
     private final WishListRepository wishListRepository = new WishListRepository();
     private final LoginRepository loginRepository = new LoginRepository();
 
-    public ArrayList<User> getUserList() {
-        return userRepository.getUsers();
+    public ArrayList<User> readAllUsers() {
+        return userRepository.readAllUsers();
     }
 
     public User readUser(String userName) {
@@ -37,5 +38,11 @@ public class OnskeService {
 
     public void registerUser(User user) {
         userRepository.createUser(user);
+    }
+
+    public WishList readWishlist(User user, String name){return wishListRepository.readWishListByName(user, name);}
+
+    public void fetchOwnerWishLists(User user){
+        wishListRepository.setOwnerWishlists(user);
     }
 }

@@ -31,6 +31,6 @@ CREATE TABLE IF NOT EXISTS `wish` (
 `is_reserved` boolean NOT NULL,
 PRIMARY KEY (`wishlist_name`),
 -- FOREIGN KEY (`wishlist_id`, `wishlist_name`) REFERENCES wishlist (`user_wishlist_id`, `user_wishlist_name`)
-FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlists(`user_wishlist_name`)
+FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlist(`user_wishlist_name`)
 
 );
