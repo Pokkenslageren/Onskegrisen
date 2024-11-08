@@ -136,6 +136,7 @@ public class WishListRepository {
                 allWishLists.add(new WishList(readUserWishListOwner,readUserWishListName,readWishListDescription));
             }
             user.setWishLists(allWishLists);
+            pstmt.close();
 
         }
         catch (Exception e){

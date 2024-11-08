@@ -1,11 +1,14 @@
 package OnskeGrisen.Repository;
 
 import OnskeGrisen.Model.Wish;
+import OnskeGrisen.Model.WishList;
+import OnskeGrisen.Model.User;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
 
 public class WishRepository {
 
@@ -115,6 +118,47 @@ public class WishRepository {
         }catch (Exception e){
             e.printStackTrace();
         }
+
+
+    }
+
+    /**
+     * Finds all wishes in a given wishlist and puts them in the wishlist
+     * @param user
+     * @param wishList
+     */
+    public ArrayList<Wish> fetchWishesFromWishlist(User user, String wishList){
+        String query = "SELECT * FROM wish WHERE wishlist_owner = ? AND wishlist_name = ?";
+
+        try{
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if(conn == null) {
+                System.out.println("Connection not established");
+            }
+            ArrayList<Wish> allWishesInWishlist = new ArrayList<>();
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,user.getUsername());
+            pstmt.setString(2,wishList);
+            ResultSet rs = pstmt.executeQuery();
+            while(rs.next()){
+                String readWishListOwner = rs.getString("wishlist_owner");
+                String readWishListName = rs.getString("wishlist_name");
+                String readWishTitle = rs.getString("wish_title");
+                String readWishDescription = rs.getString("wish_description");
+                double readWishPrice = rs.getDouble("wish_price");
+                String readWishLink = rs.getString("wish_link");
+                boolean isReserved = rs.getBoolean("is_reserved");
+
+                allWishesInWishlist.add(new Wish(readWishListOwner,readWishListName,readWishTitle,readWishDescription,readWishPrice,readWishLink,isReserved));
+            }
+            return allWishesInWishlist;
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return null;
     }
 
 }

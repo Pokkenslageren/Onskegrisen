@@ -1,6 +1,7 @@
 package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
+import OnskeGrisen.Model.Wish;
 import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Service.OnskeService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -83,11 +86,12 @@ public class OnskeController {
     @GetMapping("users/{user}/{wishlist}")
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model){
         User bruger = onskeService.readUser(user);
-        WishList onskeliste = onskeService.readWishlist(bruger, wishlist);
+        //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger,wishlist); //er denne tom? Skal den fyldes ud
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onskeliste", onskeliste);
         return "wishlist";
     }
-
-
 
     @GetMapping("/login")
     public String login(){
