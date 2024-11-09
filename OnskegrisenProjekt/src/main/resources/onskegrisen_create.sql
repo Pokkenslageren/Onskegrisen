@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS `wish` (
 `wish_price` double NOT NULL,
 `wish_link` varchar(200),
 `is_reserved` boolean NOT NULL,
-PRIMARY KEY (`wishlist_name`),
+PRIMARY KEY (`wish_title`, `wishlist_name`),
 -- FOREIGN KEY (`wishlist_id`, `wishlist_name`) REFERENCES wishlist (`user_wishlist_id`, `user_wishlist_name`)
 FOREIGN KEY (`wishlist_name`) REFERENCES user_wishlist(`user_wishlist_name`)
 

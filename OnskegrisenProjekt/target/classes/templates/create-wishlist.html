@@ -1,10 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="main.css">
+    <title>Tilføj Ønskeliste</title>
 </head>
 <body>
+<h1>Tilføj Ønskeliste</h1>
+<!-- <form action="#" th:action="@{/users/${user}/save-wishlist(user=${bruger.getUsername()})}" th:object="${onskeliste}" method="post"> -->
+<form action="#" th:action="@{/users/createwishlist}" th:object="${onskeliste}" method="post">
+    <div>
+        <label>Navn på ejer af ønskeliste:</label>
+        <input type="text" th:field="*{userWishListOwner}"/>
+    </div>
+    <br>
+    <div>
+        <label>Navn på ønskeliste:</label>
+        <input type="text" th:field="*{userWishListName}"/>
+    </div>
+    <br>
+    <div>
+        <label>Giv en beskrivelse af ønskelisten</label>
+        <input type="text" th:field="*{wishListDescription}">
+    </div>
+
+    <div class="button-container">
+        <button type="submit">Opret ønskeliste</button>
+        <a href="http://localhost:8080/users">
+            <button type="button">Fortryd</button>
+        </a>
+    </div>
+</form>
 
 </body>
 </html>

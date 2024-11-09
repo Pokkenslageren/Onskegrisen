@@ -1,6 +1,7 @@
 package OnskeGrisen.Controller;
 
 import OnskeGrisen.Model.User;
+import OnskeGrisen.Model.Wish;
 import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Service.OnskeService;
 import org.springframework.http.HttpStatus;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.ArrayList;
 
 
 @Controller
@@ -30,15 +33,15 @@ public class OnskeController {
 
     @GetMapping("/users/register")
     public String register(Model model) {
-        model.addAttribute("user","userlist");
-        model.addAttribute("users", onskeService.readAllUsers());
+        User user = new User();
+        model.addAttribute("bruger",user);
         return "register-user";
     }
-    // todo sus postmapping URL. change?
+
     @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
-        return "redirect:/user";
+        return "redirect:/users";
     }
 
 /*    @GetMapping("/users/{user}") //virker
@@ -46,6 +49,9 @@ public class OnskeController {
         User bruger = onskeService.readUser(user);
         return new ResponseEntity<>(bruger, HttpStatus.OK);
     }*/
+
+
+
 
     @GetMapping("/users/{user}")
     public String readUser(@PathVariable String user, Model model){
@@ -69,35 +75,56 @@ public class OnskeController {
     @PostMapping("users/{user}/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
-        return "redirect:/user";
+        return "redirect:/users";
     }
 
-    @GetMapping("users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
-    public String deleteUser(User user) { // todo hvad med @path variable?
+    @DeleteMapping("/users/delete/{user}") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    public String deleteUser(@PathVariable("user") User user) { // todo hvad med @path variable?
         //onskeService.deleteWish
         //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
-        return "redirect:/landing-page";
+        return "redirect:/users";
     }
 
-    @GetMapping("users/{user}/{wishlist}")
+    @GetMapping("/users/{user}/{wishlist}")
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model){
         User bruger = onskeService.readUser(user);
-        WishList onskeliste = onskeService.readWishlist(bruger, wishlist);
+        //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger,wishlist); //er denne tom? Skal den fyldes ud
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onskeliste", onskeliste);
         return "wishlist";
     }
 
-
-
-    @GetMapping("/login")
-    public String login(){
-        return "login";
+    @GetMapping("/users/{user}/createwishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
+    public String createWishList(@PathVariable ("user") String user, Model model){
+        User bruger = onskeService.readUser(user);
+        WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onskeliste", wishList);
+        return "create-wishlist";
     }
 
+    @PostMapping("/users/createwishlist") //eller add
+    public String saveWishList(@ModelAttribute WishList wishList){
+        onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
+        return "redirect:/users"; //skal redircte til siden for den tilhørende wishlist
+    }
 
-    @GetMapping("/login/{user}/{wishlist}")
-    public String wishlist(){
-        return "wishlist";
+    @GetMapping("/users/{user}/createwish") //kan både gøres fra profilsiden og fra den enkelte ønskeliste
+    public String createWish(@PathVariable ("user") String user, Model model){
+        User bruger = onskeService.readUser(user);
+        Wish wish = new Wish();
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onske", wish);
+        return "create-wish";
+    }
+
+    @PostMapping("/users/{user}/createwish") //TODO: super sus tilgang, men wish.getWishListOwner() returnerer null, for some reason
+    public String saveWish(@PathVariable ("user") String user, @ModelAttribute Wish wish, Model model){
+        model.addAttribute("bruger",user);
+        onskeService.createWish(user,wish.getWishListName(),wish.getWishTitle(),wish.getWishDescription(),wish.getWishPrice(),wish.getWishLink(),false);
+        return "redirect:/users";
     }
 
     @GetMapping("/login/{user}/{wish}")
@@ -134,4 +161,9 @@ public class OnskeController {
     public String deletewish(RedirectAttributes redirectAttributes){
         return "redirect:/wishlist";
         }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }

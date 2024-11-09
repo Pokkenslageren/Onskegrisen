@@ -19,12 +19,17 @@
     <tr th:each="user : ${users}">
         <td id="test" th:text="${user.getUsername()}"></td>
         <td th:text="${user.getPassword()}"></td>
+        <td>
+            <form th:action="@{/users/{user}(user=${user.getUsername()})}">
+                <input type="submit" th:value="Profil">
+            </form>
+        </td>
 
     </tr>
     </tbody>
 </table>
-<a href="http://localhost:8080/attractions/add">
-    <button>Tilføj attraktion</button>
+<a href="http://localhost:8080/users/register">
+    <button>Tilføj bruger</button>
 </a>
 
 
