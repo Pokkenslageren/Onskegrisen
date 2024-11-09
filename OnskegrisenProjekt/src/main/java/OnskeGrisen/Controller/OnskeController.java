@@ -37,7 +37,7 @@ public class OnskeController {
         model.addAttribute("bruger",user);
         return "register-user";
     }
-    // todo sus postmapping URL. change?
+
     @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
@@ -49,6 +49,9 @@ public class OnskeController {
         User bruger = onskeService.readUser(user);
         return new ResponseEntity<>(bruger, HttpStatus.OK);
     }*/
+
+
+
 
     @GetMapping("/users/{user}")
     public String readUser(@PathVariable String user, Model model){
@@ -72,15 +75,15 @@ public class OnskeController {
     @PostMapping("users/{user}/update")
     public String updateUser(@ModelAttribute User user) {
         onskeService.updateUser(user, user.getUsername());
-        return "redirect:/user";
+        return "redirect:/users";
     }
 
-    @GetMapping("users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
-    public String deleteUser(User user) { // todo hvad med @path variable?
+    @DeleteMapping("/users/delete/{user}") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    public String deleteUser(@PathVariable("user") User user) { // todo hvad med @path variable?
         //onskeService.deleteWish
         //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
-        return "redirect:/landing-page";
+        return "redirect:/users";
     }
 
     @GetMapping("/users/{user}/{wishlist}")
@@ -99,7 +102,7 @@ public class OnskeController {
     }
 
 
-    @GetMapping("/users/add-wishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
+    @GetMapping("/users/createwishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
     public String createWish(@PathVariable String user, Model model){
         User bruger = onskeService.readUser(user);
         WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
@@ -108,11 +111,13 @@ public class OnskeController {
         return "create-wishlist";
     }
 
+/*
     @PostMapping("/users/{user}/save-wishlist") //eller add
     public String saveWish(@ModelAttribute WishList wishList){
         onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
-        return "redirect:/user-list"; //skal redircte til siden for den tilhørende wishlist
+        return "redirect:/users"; //skal redircte til siden for den tilhørende wishlist
     }
+*/
 
     @GetMapping("/login/{user}/{wish}")
     public String wish(){
