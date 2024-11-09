@@ -102,8 +102,8 @@ public class OnskeController {
     }
 
 
-    @GetMapping("/users/createwishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
-    public String createWish(@PathVariable String user, Model model){
+    @GetMapping("/users/{user}/createwishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
+    public String createWish(@PathVariable ("user") String user, Model model){
         User bruger = onskeService.readUser(user);
         WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
         model.addAttribute("bruger", bruger);
@@ -111,13 +111,11 @@ public class OnskeController {
         return "create-wishlist";
     }
 
-/*
-    @PostMapping("/users/{user}/save-wishlist") //eller add
+    @PostMapping("/users/createwishlist") //eller add
     public String saveWish(@ModelAttribute WishList wishList){
         onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
         return "redirect:/users"; //skal redircte til siden for den tilhørende wishlist
     }
-*/
 
     @GetMapping("/login/{user}/{wish}")
     public String wish(){
