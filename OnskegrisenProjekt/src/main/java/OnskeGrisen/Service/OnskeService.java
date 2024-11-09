@@ -50,4 +50,8 @@ public class OnskeService {
     public ArrayList<Wish> fetchWishesFromWishlist(User user, String wishList){
         return wishRepository.fetchWishesFromWishlist(user, wishList);
     }
+
+    public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription){
+        wishListRepository.createWishList(userWishListOwner,userWishListName,wishListDescription);
+    }
 }

@@ -6,6 +6,7 @@ public class Wish {
     private String wishLink;
     private boolean isReserved;
 
+    public Wish(){};
     public Wish(String wishListOwner,String wishListName,String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved) {
         this.wishListOwner = wishListOwner;
         this.wishListName = wishListName;

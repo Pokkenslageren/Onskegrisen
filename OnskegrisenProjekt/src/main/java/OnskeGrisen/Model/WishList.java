@@ -7,6 +7,7 @@ public class WishList {
     private String wishListDescription;
     private ArrayList<Wish> wishList;
 
+    public WishList(){};
     public WishList(String userWishListOwner, String userWishListName, String wishListDescription) {
         this.userWishListOwner = userWishListOwner;
         this.userWishListName = userWishListName;

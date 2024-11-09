@@ -33,15 +33,15 @@ public class OnskeController {
 
     @GetMapping("/users/register")
     public String register(Model model) {
-        model.addAttribute("user","userlist");
-        model.addAttribute("users", onskeService.readAllUsers());
+        User user = new User();
+        model.addAttribute("bruger",user);
         return "register-user";
     }
     // todo sus postmapping URL. change?
     @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
-        return "redirect:/user";
+        return "redirect:/users";
     }
 
 /*    @GetMapping("/users/{user}") //virker
@@ -83,7 +83,7 @@ public class OnskeController {
         return "redirect:/landing-page";
     }
 
-    @GetMapping("users/{user}/{wishlist}")
+    @GetMapping("/users/{user}/{wishlist}")
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model){
         User bruger = onskeService.readUser(user);
         //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?
@@ -99,13 +99,18 @@ public class OnskeController {
     }
 
 
-    @GetMapping("/users/{user}/{wishlist}/add")
-    public String createWish(){
-        return "create-wish";
+    @GetMapping("/users/add-wishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
+    public String createWish(@PathVariable String user, Model model){
+        User bruger = onskeService.readUser(user);
+        WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onskeliste", wishList);
+        return "create-wishlist";
     }
 
-    @PostMapping("/users/{user}/{wishlist}/save") //eller add
-    public String saveWish(){
+    @PostMapping("/users/{user}/save-wishlist") //eller add
+    public String saveWish(@ModelAttribute WishList wishList){
+        onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
         return "redirect:/user-list"; //skal redircte til siden for den tilhørende wishlist
     }
 

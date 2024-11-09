@@ -2,9 +2,27 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <link rel="stylesheet" href="main.css">
+    <title>Tilføj Bruger</title>
 </head>
 <body>
-
+<h1>Tilføj Bruger</h1>
+<form action="#" th:action="@{/users/register}" th:object="${bruger}" method="post">
+    <div>
+        <label>Brugernavn:</label>
+        <input type="text" th:field="*{username}"/>
+    </div>
+    <br>
+    <div>
+        <label>Password:</label>
+        <input type="text" th:field="*{password}"/>
+    </div>
+    <div class="button-container">
+        <button type="submit">OK</button>
+        <a href="http://localhost:8080/users">
+            <button type="button">Fortryd</button>
+        </a>
+    </div>
+</form>
 </body>
 </html>

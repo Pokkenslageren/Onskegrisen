@@ -24,14 +24,10 @@
         <td th:text="${onske.getWishTitle()}"></td>
         <td th:text="${onske.getWishDescription()}"></td>
         <td th:text="${onske.getWishPrice()}"></td>
-        <td th:text="${onske.getWishLink()}"></td>
+        <td th:text="${onske.getWishLink()}"></td>  <!-- som link med href? -->
         <td th:text="${onske.getIsReserved()}"></td>
     </tr>
     </tbody>
 </table>
-<a th:href="@{/users/${user}/${wishlist}/add(user=${})">
-    <button>Tilføj Ønske</button>
-</a>
-
 </body>
 </html>

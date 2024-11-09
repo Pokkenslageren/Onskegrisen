@@ -121,31 +121,33 @@ public class UserRepository {
     public ArrayList<User> readAllUsers() {
 
         String query = "SELECT * FROM users;";
-
-        try{
+        ArrayList<User> tempUserList = new ArrayList<>();
+        try {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection(database, dbUsername, dbPassword);
-            ArrayList<User> tempUserList = new ArrayList<>();
+
             if (conn == null) {
-                System.out.println("connection not established.");
+                System.out.println("Connection not established.");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
             ResultSet rs = pstmt.executeQuery();
+
+            // Loop through the result set and add each user to the list
             while (rs.next()) {
                 String readUserName = rs.getString("user_name");
                 String readPassword = rs.getString("user_password");
-                users.add(new User(readUserName, readPassword));
-                return users;
-
+                tempUserList.add(new User(readUserName, readPassword));
             }
-            rs.close();
 
-        }
-        catch(Exception e) {
+            // Close resources after looping
+            rs.close();
+            pstmt.close();
+            conn.close();
+
+        } catch(Exception e) {
             e.printStackTrace();
         }
-        return null;
-
+        return tempUserList; // Return the list after all users have been added
     }
 
 }

@@ -6,6 +6,8 @@ public class User {
     private ArrayList<WishList> wishLists;
     private int numberOfWishLists;
 
+    public User(){};
+
     public User(String username, String password) {
         this.username = username;
         this.password = password;
