@@ -96,14 +96,8 @@ public class OnskeController {
         return "wishlist";
     }
 
-    @GetMapping("/login")
-    public String login(){
-        return "login";
-    }
-
-
     @GetMapping("/users/{user}/createwishlist") //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
-    public String createWish(@PathVariable ("user") String user, Model model){
+    public String createWishList(@PathVariable ("user") String user, Model model){
         User bruger = onskeService.readUser(user);
         WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
         model.addAttribute("bruger", bruger);
@@ -112,9 +106,25 @@ public class OnskeController {
     }
 
     @PostMapping("/users/createwishlist") //eller add
-    public String saveWish(@ModelAttribute WishList wishList){
+    public String saveWishList(@ModelAttribute WishList wishList){
         onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
         return "redirect:/users"; //skal redircte til siden for den tilhørende wishlist
+    }
+
+    @GetMapping("/users/{user}/createwish") //kan både gøres fra profilsiden og fra den enkelte ønskeliste
+    public String createWish(@PathVariable ("user") String user, Model model){
+        User bruger = onskeService.readUser(user);
+        Wish wish = new Wish();
+        model.addAttribute("bruger", bruger);
+        model.addAttribute("onske", wish);
+        return "create-wish";
+    }
+
+    @PostMapping("/users/{user}/createwish") //TODO: super sus tilgang, men wish.getWishListOwner() returnerer null, for some reason
+    public String saveWish(@PathVariable ("user") String user, @ModelAttribute Wish wish, Model model){
+        model.addAttribute("bruger",user);
+        onskeService.createWish(user,wish.getWishListName(),wish.getWishTitle(),wish.getWishDescription(),wish.getWishPrice(),wish.getWishLink(),false);
+        return "redirect:/users";
     }
 
     @GetMapping("/login/{user}/{wish}")
@@ -151,4 +161,9 @@ public class OnskeController {
     public String deletewish(RedirectAttributes redirectAttributes){
         return "redirect:/wishlist";
         }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
+    }
 }

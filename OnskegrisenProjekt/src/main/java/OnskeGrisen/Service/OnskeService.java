@@ -54,4 +54,8 @@ public class OnskeService {
     public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription){
         wishListRepository.createWishList(userWishListOwner,userWishListName,wishListDescription);
     }
+
+    public void createWish(String wishListOwner, String wishListName, String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved){
+        wishRepository.createWish(wishListOwner,wishListName,wishTitle,wishDescription,wishPrice,wishLink,isReserved);
+    }
 }

@@ -7,40 +7,45 @@
 </head>
 <body>
 <h1>Tilføj Ønske</h1>
-<form action="#" th:action="@{/attractions/save}" th:object="${touristAttraction}" method="post">
+<!-- <form action="#" th:action="@{/users/${user}/save-wishlist(user=${bruger.getUsername()})}" th:object="${onskeliste}" method="post"> -->
+<form action="#" th:action="@{/users/{user}/createwish(user=${bruger.getUsername()})}" th:object="${onske}" method="post">
+<!--    <div>
+        <label>Navn på ejer af ønskeliste:</label>
+        <input type="text" th:field="*{wishListOwner}"/>
+    </div>
+    <br>-->
     <div>
-        <label>Navn:</label>
-        <input type="text" th:field="*{name}"/>
+        <label>Navn på ønskeliste:</label>
+        <input type="text" th:field="*{wishListName}"/>
     </div>
     <br>
     <div>
-        <label>Beskrivelse:</label>
-        <input type="text" th:field="*{description}"/>
+        <label>Navn på ønsket</label>
+        <input type="text" th:field="*{wishTitle}">
     </div>
     <br>
     <div>
-        <label>By:</label>
-        <select th:field="*{city}">
-            <option value="">--Vælg By--</option>
-            <option th:each="by : ${cities}" th:value="${by}" th:text="${by}"></option>
-        </select>
+        <label>Giv en beskrivelse af ønsket</label>
+        <input type="text" th:field="*{wishDescription}">
     </div>
     <br>
-    <fieldset>
-        <legend>Vælg relevante tags</legend>
-        <div th:each="tag : ${tags}">
-            <input type="checkbox" th:field="*{tags}" th:value="${tag}" th:text="${tag}">
-            <label th:text="${tag}"></label>
-        </div>
-    </fieldset>
+    <div>
+        <label>Hvad koster gaven?</label>
+        <input type="text" th:field="*{wishPrice}">
+    </div>
     <br>
+    <div>
+        <label>Hvor kan gaven købes?</label>
+        <input type="text" th:field="*{wishLink}">
+    </div>
 
     <div class="button-container">
-        <button type="submit">OK</button>
-        <a href="http://localhost:8080/attractions">
+        <button type="submit">Opret ønske</button>
+        <a href="http://localhost:8080/users">
             <button type="button">Fortryd</button>
         </a>
     </div>
 </form>
+
 </body>
 </html>
