@@ -99,9 +99,14 @@ public class OnskeController {
     }
 
 
-    @GetMapping("/login/{user}/{wishlist}")
-    public String wishlist(){
-        return "wishlist";
+    @GetMapping("/users/{user}/{wishlist}/add")
+    public String createWish(){
+        return "create-wish";
+    }
+
+    @PostMapping("/users/{user}/{wishlist}/save") //eller add
+    public String saveWish(){
+        return "redirect:/user-list"; //skal redircte til siden for den tilhørende wishlist
     }
 
     @GetMapping("/login/{user}/{wish}")

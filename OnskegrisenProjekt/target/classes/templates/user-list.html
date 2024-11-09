@@ -20,7 +20,7 @@
         <td id="test" th:text="${user.getUsername()}"></td>
         <td th:text="${user.getPassword()}"></td>
         <td>
-            <form th:action="@{users/{user}(user=${user.getUsername()})}">
+            <form th:action="@{{user}(user=${user.getUsername()})}">
                 <input type="submit" th:value="Profil">
             </form>
         </td>
@@ -29,7 +29,7 @@
     </tbody>
 </table>
 <a href="http://localhost:8080/attractions/add">
-    <button>Tilføj attraktion</button>
+    <button>Tilføj bruger</button>
 </a>
 
 
