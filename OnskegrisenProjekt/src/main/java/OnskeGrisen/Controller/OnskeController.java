@@ -30,14 +30,17 @@ public class OnskeController {
         return "landing-page";
     }*/
 
+/*    @GetMapping("/home") //virker ikke
+    public String home(){
+        return "landing-page";
+    }*/
+
     @GetMapping("/users")
     public String readAllUsers(Model model){
         model.addAttribute("titel","List of users");
         model.addAttribute("users",onskeService.readAllUsers());
         return "user-list";
     }
-
-
 
     @GetMapping("/users/register")
     public String register(Model model) {
@@ -141,19 +144,24 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-    @GetMapping("/users/{user}/reservewish")
-    public String reserveWish(@PathVariable ("user") String user,Model model){
-        User bruger = onskeService.readUser(user);
+    @GetMapping("/users/{user}/{wishlist}/reservewish")
+    public String reserveWish(@PathVariable ("user") User user, @PathVariable("wishlist")String wishlist, Model model){
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(user,wishlist);
+        Wish wish = new Wish();
         model.addAttribute("bruger", user);
+        model.addAttribute("onskeliste",onskeliste);
+        model.addAttribute("onske",wish);
         return "reserve-wish";
-
     }
 
 
-    @PostMapping("/login/{user}/createwishlist")
-    public String createwishlist(){
-        return "create-wishlist";
-    }
+/*    @PostMapping("/users/{user}/{wishlist}/reservedwish")
+    public String createwishlist(@PathVariable ("user")String user, @PathVariable("wishlist")String wishlist, @ModelAttribute Wish wish){
+
+        onskeService.reserveWish(user, wishlist,wish.getWishTitle());
+
+        return "redirect:/users/{user}/{wishlist}";
+    }*/
 
     @PostMapping("/login/{user}/updatewishlist")
     public String updatewishlist(){
