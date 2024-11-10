@@ -33,8 +33,12 @@ public class OnskeService {
         userRepository.updateUser(user, userName);
     }
 
-    public void deleteUser(User user) {
+    public void deleteUser(String user) {
         userRepository.deleteUser(user);
+    }
+
+    public void deleteWishList(String userName, String wishListName){
+        wishListRepository.deleteWishList(userName,wishListName);
     }
 
     public void registerUser(User user) {
@@ -57,5 +61,9 @@ public class OnskeService {
 
     public void createWish(String wishListOwner, String wishListName, String wishTitle, String wishDescription, double wishPrice, String wishLink, boolean isReserved){
         wishRepository.createWish(wishListOwner,wishListName,wishTitle,wishDescription,wishPrice,wishLink,isReserved);
+    }
+
+    public void reserveWish(String wishListOwner, String wishListName, String wish_title){
+        wishRepository.reserveWish(wishListOwner,wishListName,wish_title);
     }
 }

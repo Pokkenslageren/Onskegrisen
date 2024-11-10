@@ -18,11 +18,17 @@ import java.util.ArrayList;
 @RequestMapping("")
 public class OnskeController {
 
+
     private final OnskeService onskeService;
 
     public OnskeController(OnskeService onskeService){
         this.onskeService = onskeService;
     }
+
+/*    @GetMapping("/")
+    public String landingPage(){
+        return "landing-page";
+    }*/
 
     @GetMapping("/users")
     public String readAllUsers(Model model){
@@ -30,6 +36,8 @@ public class OnskeController {
         model.addAttribute("users",onskeService.readAllUsers());
         return "user-list";
     }
+
+
 
     @GetMapping("/users/register")
     public String register(Model model) {
@@ -78,12 +86,18 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-    @DeleteMapping("/users/delete/{user}") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
-    public String deleteUser(@PathVariable("user") User user) { // todo hvad med @path variable?
+    @GetMapping("/users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    public String deleteUser(@PathVariable("user") String user) { // todo hvad med @path variable?
         //onskeService.deleteWish
         //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("/users/{user}/{wishlist}/delete")
+    public String deleteWishList(@PathVariable("user")String user, @PathVariable("wishlist")String wishlist){
+        onskeService.deleteWishList(user,wishlist);
+        return "redirect:/users/{user}";
     }
 
     @GetMapping("/users/{user}/{wishlist}")
@@ -127,10 +141,14 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-    @GetMapping("/login/{user}/{wish}")
-    public String wish(){
-        return "wish";
+    @GetMapping("/users/{user}/reservewish")
+    public String reserveWish(@PathVariable ("user") String user,Model model){
+        User bruger = onskeService.readUser(user);
+        model.addAttribute("bruger", user);
+        return "reserve-wish";
+
     }
+
 
     @PostMapping("/login/{user}/createwishlist")
     public String createwishlist(){
