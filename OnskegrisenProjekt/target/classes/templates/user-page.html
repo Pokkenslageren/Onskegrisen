@@ -15,7 +15,6 @@
         <th scope="col">Navn på ønskeliste</th>
         <th scope="col">Beskrivelse</th>
         <th scope="col">Se ønskeliste</th>
-        <th scope="col">Redigér</th>
         <th scope="col">Slet</th>
     </tr>
     </thead>
@@ -28,6 +27,11 @@
                 <input type="submit" th:value="Listen">
             </form>
         </td>
+        <td>
+            <form th:action="@{{user}/{wishlist}/delete(user=${bruger.getUsername()}, wishlist=${wishlist.getUserWishListName()})}">
+                <input type="submit" th:value="Slet">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
@@ -36,6 +40,9 @@
 </a>
 <a th:href="@{http://localhost:8080/users/{user}/createwish(user=${bruger.getUsername()})}">
     <button>Tilføj Nyt Ønske</button>
+</a>
+<a th:href="@{http://localhost:8080/users}">
+    <button>Tilbage til brugerliste</button>
 </a>
 
 
