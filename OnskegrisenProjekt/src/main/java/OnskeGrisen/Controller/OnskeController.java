@@ -18,11 +18,22 @@ import java.util.ArrayList;
 @RequestMapping("")
 public class OnskeController {
 
+
     private final OnskeService onskeService;
 
     public OnskeController(OnskeService onskeService){
         this.onskeService = onskeService;
     }
+
+/*    @GetMapping("/")
+    public String landingPage(){
+        return "landing-page";
+    }*/
+
+/*    @GetMapping("/home") //virker ikke
+    public String home(){
+        return "landing-page";
+    }*/
 
     @GetMapping("/users")
     public String readAllUsers(Model model){
@@ -43,15 +54,6 @@ public class OnskeController {
         onskeService.registerUser(user);
         return "redirect:/users";
     }
-
-/*    @GetMapping("/users/{user}") //virker
-    public ResponseEntity<User> readUser(@PathVariable String user){
-        User bruger = onskeService.readUser(user);
-        return new ResponseEntity<>(bruger, HttpStatus.OK);
-    }*/
-
-
-
 
     @GetMapping("/users/{user}")
     public String readUser(@PathVariable String user, Model model){
@@ -78,12 +80,18 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-    @DeleteMapping("/users/delete/{user}") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
-    public String deleteUser(@PathVariable("user") User user) { // todo hvad med @path variable?
+    @GetMapping("/users/{user}/delete") // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
+    public String deleteUser(@PathVariable("user") String user) { // todo hvad med @path variable?
         //onskeService.deleteWish
         //onskeService.deleteWishLists(user)
         onskeService.deleteUser(user);
         return "redirect:/users";
+    }
+
+    @GetMapping("/users/{user}/{wishlist}/delete")
+    public String deleteWishList(@PathVariable("user")String user, @PathVariable("wishlist")String wishlist){
+        onskeService.deleteWishList(user,wishlist);
+        return "redirect:/users/{user}";
     }
 
     @GetMapping("/users/{user}/{wishlist}")
@@ -127,15 +135,27 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-    @GetMapping("/login/{user}/{wish}")
-    public String wish(){
-        return "wish";
+/*
+    @GetMapping("/users/{user}/{wishlist}/reservewish")
+    public String reserveWish(@PathVariable ("user") String user, @PathVariable("wishlist")String wishlist, Model model){
+        User bruger = onskeService.readUser(user);
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger,wishlist);
+        Wish wish = new Wish();
+        model.addAttribute("bruger", user);
+        model.addAttribute("onskeliste",onskeliste);
+        model.addAttribute("onske",wish);
+        return "reserve-wish";
     }
+*/
 
-    @PostMapping("/login/{user}/createwishlist")
-    public String createwishlist(){
-        return "create-wishlist";
-    }
+
+/*    @PostMapping("/users/{user}/{wishlist}/reservedwish")
+    public String createwishlist(@PathVariable ("user")String user, @PathVariable("wishlist")String wishlist, @ModelAttribute Wish wish){
+
+        onskeService.reserveWish(user, wishlist,wish.getWishTitle());
+
+        return "redirect:/users/{user}/{wishlist}";
+    }*/
 
     @PostMapping("/login/{user}/updatewishlist")
     public String updatewishlist(){

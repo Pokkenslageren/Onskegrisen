@@ -95,7 +95,9 @@ public class WishListRepository {
         }
     }
 
-    public void deleteWishList(User user, String userWishListName) {
+    public void deleteWishList(String userName, String userWishListName) {
+        String constraintsOffQuery = "SET foreign_key_checks = 0;";
+        String constraintsOnQuery = "SET foreign_key_checks = 1;";
         String query = "DELETE FROM user_wishlist WHERE user_wishlist_name = ? AND user_wishlist_owner = ?";
 
         try{
@@ -104,10 +106,14 @@ public class WishListRepository {
             if(conn == null) {
                 System.out.println("Connection not established");
             }
+            PreparedStatement pstmtoff = conn.prepareStatement(constraintsOffQuery);
+            PreparedStatement pstmton = conn.prepareStatement(constraintsOnQuery);
             PreparedStatement pstmt = conn.prepareStatement(query);
             pstmt.setString(1, userWishListName);
-            pstmt.setString(2, user.getUsername());
+            pstmt.setString(2, userName);
+            pstmtoff.executeUpdate();
             pstmt.executeUpdate();
+            pstmton.executeUpdate();
             pstmt.close();
 
         }

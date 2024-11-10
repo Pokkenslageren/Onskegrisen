@@ -13,7 +13,6 @@
     <tr>
         <th scope="col">Navn</th>
         <th scope="col">Password</th>
-        <th scope="col">Se Profil</th>
     </tr>
     </thead>
     <tbody>
@@ -21,7 +20,7 @@
         <td id="test" th:text="${user.getUsername()}"></td>
         <td th:text="${user.getPassword()}"></td>
         <td>
-            <form th:action="@{/users/{user}(user=${user.getUsername()})}">
+            <form th:action="@{users/{user}(user=${user.getUsername()})}">
                 <input type="submit" th:value="Profil">
             </form>
         </td>
@@ -29,7 +28,7 @@
     </tr>
     </tbody>
 </table>
-<a href="http://localhost:8080/users/register">
+<a href="http://localhost:8080/attractions/add">
     <button>Tilføj bruger</button>
 </a>
 

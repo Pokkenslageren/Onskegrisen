@@ -161,4 +161,26 @@ public class WishRepository {
         return null;
     }
 
+    public void reserveWish(String wishListOwner, String wishListName, String wish_title){
+        String query = "UPDATE wish SET is_reserved = true WHERE wishlist_owner = ? AND wishlist_name = ? AND wish_title = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("Connection not established");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1,wishListOwner);
+            pstmt.setString(2,wishListName);
+            pstmt.setString(3,wish_title);
+            pstmt.executeUpdate();
+            pstmt.close();
+
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
 }

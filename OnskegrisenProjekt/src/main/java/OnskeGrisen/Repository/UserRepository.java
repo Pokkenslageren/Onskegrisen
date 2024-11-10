@@ -97,8 +97,10 @@ public class UserRepository {
 
     }
 
-    public void deleteUser(User user) {
+    public void deleteUser(String username) {
+        String constraintsOffQuery = "SET foreign_key_checks = 0;";
         String query = "DELETE FROM users WHERE user_name = ?;";
+        String constraintsOnQuery = "SET foreign_key_checks = 1;";
 
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
@@ -106,9 +108,13 @@ public class UserRepository {
             if (conn == null) {
                 System.out.println("Connection not established.");
             }
+            PreparedStatement pstmtoff = conn.prepareStatement(constraintsOffQuery);
+            PreparedStatement pstmton = conn.prepareStatement(constraintsOnQuery);
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1, user.getUsername());
+            pstmt.setString(1, username);
+            pstmtoff.executeUpdate();
             pstmt.executeUpdate();
+            pstmton.executeUpdate();
             pstmt.close();
 
         }
