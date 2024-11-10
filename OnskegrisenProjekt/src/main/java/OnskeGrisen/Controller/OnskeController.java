@@ -55,15 +55,6 @@ public class OnskeController {
         return "redirect:/users";
     }
 
-/*    @GetMapping("/users/{user}") //virker
-    public ResponseEntity<User> readUser(@PathVariable String user){
-        User bruger = onskeService.readUser(user);
-        return new ResponseEntity<>(bruger, HttpStatus.OK);
-    }*/
-
-
-
-
     @GetMapping("/users/{user}")
     public String readUser(@PathVariable String user, Model model){
         User bruger = onskeService.readUser(user);
@@ -144,15 +135,18 @@ public class OnskeController {
         return "redirect:/users";
     }
 
+/*
     @GetMapping("/users/{user}/{wishlist}/reservewish")
-    public String reserveWish(@PathVariable ("user") User user, @PathVariable("wishlist")String wishlist, Model model){
-        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(user,wishlist);
+    public String reserveWish(@PathVariable ("user") String user, @PathVariable("wishlist")String wishlist, Model model){
+        User bruger = onskeService.readUser(user);
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger,wishlist);
         Wish wish = new Wish();
         model.addAttribute("bruger", user);
         model.addAttribute("onskeliste",onskeliste);
         model.addAttribute("onske",wish);
         return "reserve-wish";
     }
+*/
 
 
 /*    @PostMapping("/users/{user}/{wishlist}/reservedwish")
