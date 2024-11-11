@@ -100,7 +100,7 @@ public class WishRepository {
         }
     }
 
-    public void deleteWish(Wish wish){
+    public void deleteWish(String wishListName, String wishTitle){
         String query = "DELETE FROM wish WHERE wish_title = ? AND wishlist_name = ?";
 
         try{
@@ -110,8 +110,8 @@ public class WishRepository {
                 System.out.println("Connection not established");
             }
             PreparedStatement pstmt = conn.prepareStatement(query);
-            pstmt.setString(1,wish.getWishTitle());
-            pstmt.setString(2,wish.getWishListName());
+            pstmt.setString(1,wishTitle);
+            pstmt.setString(2,wishListName);
             pstmt.executeUpdate();
             pstmt.close();
 

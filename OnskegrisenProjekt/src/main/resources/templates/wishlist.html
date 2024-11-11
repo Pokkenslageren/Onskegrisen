@@ -17,6 +17,7 @@
         <th scope="col">Pris</th>
         <th scope="col">Link</th>
         <th scope="col">Reserveret?</th>
+        <th scope="col">Fjern ønske</th>
     </tr>
     </thead>
     <tbody>
@@ -26,8 +27,16 @@
         <td th:text="${onske.getWishPrice()}"></td>
         <td th:text="${onske.getWishLink()}"></td>  <!-- som link med href? -->
         <td th:text="${onske.getIsReserved()}"></td>
+        <td>
+            <form th:action="@{{user}/{wishlist}/{wish}/delete(user=${bruger.getUsername()}, wishlist=${onskelistenavn}, wish=${onske.getWishTitle()})}">
+                <input type="submit" th:value="Slet">
+            </form>
+        </td>
     </tr>
     </tbody>
 </table>
+<a th:href="@{http://localhost:8080/users/{user}/{wishlist}createwish(user=${bruger.getUsername()},wishlist=${onskelistenavn})}">
+    <button>Tilføj Nyt Ønske</button>
+</a>
 </body>
 </html>
