@@ -82,11 +82,11 @@ public class OnskeController {
         return "redirect:/users/{user}";
     }
 
-    @GetMapping("/users/{user}/{wishlist}/{wish}delete")
+    @GetMapping("/users/{user}/{wishlist}/{wish}/delete")
     public String deleteWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, @PathVariable("wish")String wish) {
 
         onskeService.deleteWish(wishlist,wish);
-        return "redirect:/users/";
+        return "redirect:/users/{user}";
     }
 
     @GetMapping("/users/{user}/{wishlist}")

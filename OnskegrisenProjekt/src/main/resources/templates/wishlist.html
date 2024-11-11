@@ -35,8 +35,11 @@
     </tr>
     </tbody>
 </table>
-<a th:href="@{http://localhost:8080/users/{user}/{wishlist}createwish(user=${bruger.getUsername()},wishlist=${onskelistenavn})}">
+<a th:href="@{http://localhost:8080/users/{user}/createwish(user=${bruger.getUsername()},wishlist=${onskelistenavn})}">
     <button>Tilføj Nyt Ønske</button>
+</a>
+<a th:href="@{http://localhost:8080/users/{user}/{wishlist}/reservewish(user=${bruger.getUsername()},wishlist=${onskelistenavn})}">
+    <button>Reservér Ønske</button>
 </a>
 </body>
 </html>
