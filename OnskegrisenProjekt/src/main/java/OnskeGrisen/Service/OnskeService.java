@@ -66,4 +66,8 @@ public class OnskeService {
     public void reserveWish(String wishListOwner, String wishListName, String wish_title){
         wishRepository.reserveWish(wishListOwner,wishListName,wish_title);
     }
+
+    public void deleteWish(String wishListName, String wishTitle){
+        wishRepository.deleteWish(wishListName,wishTitle);
+    }
 }
