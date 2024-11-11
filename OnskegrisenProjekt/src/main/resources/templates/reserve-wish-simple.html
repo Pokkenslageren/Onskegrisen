@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <title>Reserver Ønske</title>
+</head>
+<body>
+<h1>Reserver Ønske</h1>
+<!-- <form action="#" th:action="@{/users/${user}/save-wishlist(user=${bruger.getUsername()})}" th:object="${onskeliste}" method="post"> -->
+<form action="#" th:action="@{/users/{user}/wishreserved(user=${brugernavn})}" th:object="${nytonske}" method="post">
+    <div>
+        <label>Navn på ejer af ønskeliste:</label>
+        <input type="text" th:field="*{wishListOwner}"/>
+    </div>
+    <br>
+    <div>
+        <label>Navn på ønskeliste:</label>
+        <input type="text" th:field="*{wishListName}"/>
+    </div>
+    <br>
+    <div>
+        <label>Ønske:</label>
+        <select th:field="*{wishTitle}">
+            <option value="">--Vælg Ønske--</option>
+            <option th:each="titel : ${onskeliste}" th:value="${titel.getWishTitle()}" th:text="${titel.getWishTitle()}"></option>
+        </select>
+    </div>
+
+    <div class="button-container">
+        <button type="submit">Reserver ønske</button>
+        <a href="http://localhost:8080/users">
+            <button type="button">Fortryd</button>
+        </a>
+    </div>
+</form>
+
+</body>
+</html>
