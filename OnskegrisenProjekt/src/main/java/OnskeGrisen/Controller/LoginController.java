@@ -13,7 +13,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 
-@Controller
+//@Controller
 public class LoginController {
     @GetMapping("/login")
     String getLogin(){

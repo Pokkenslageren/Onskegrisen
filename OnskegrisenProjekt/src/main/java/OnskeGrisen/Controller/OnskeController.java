@@ -35,6 +35,19 @@ public class OnskeController {
         return "landing-page";
     }*/
 
+    @GetMapping("/login")
+    public String login(Model model){
+        User bruger = new User();
+        model.addAttribute("bruger",bruger);
+        return "login";
+    }
+
+    @PostMapping("logins")
+    public String logins(@ModelAttribute User user, Model model){
+        model.addAttribute("bruger",user);
+        return "logins";
+    }
+
     @GetMapping("/users")
     public String readAllUsers(Model model) {
         model.addAttribute("titel", "List of users");
@@ -52,7 +65,7 @@ public class OnskeController {
     @PostMapping("/users/register")
     public String register(@ModelAttribute User user) {
         onskeService.registerUser(user);
-        return "redirect:/users";
+        return "redirect:/login";
     }
 
     @GetMapping("/users/{user}")
