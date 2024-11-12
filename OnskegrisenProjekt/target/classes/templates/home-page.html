@@ -7,34 +7,17 @@
     <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}">
 </head>
 
-<div class="wrapper">
 <body>
+<div class="wrapper">
 <div class="container">
 
-    <div class="topnav">
-        <a href="/home" class="title-link">
-            <h1 class="title">Ønskegrisen</h1>
-        </a>
-        <a href="/login">Log ind</a>
-        <a href="/users/register">Opret bruger</a>
-        <a href="https://x.com/KasperMadsen9">Find os på X</a>
-        <a href="#about">Om</a>
-    </div>
+    <div th:insert="~{fragments/topnav :: topnav}"></div>
 
-
-    <form action="home-page.html" class="form-container">
-    </form>
 </div>
 
-<footer class="footer">
-    Kontakt os <br>
-    <a href="mailto:Ønske.grisen@gmail.com">Ønske.grisen@gmail.com</a><br>
-    +45 10 20 30 40 <br>
-    @ØnskeGrisen
-</footer>
+    <div th:insert="~{fragments/footer :: footer}"></div>
 
+</div>
 </body>
-
-</div>
 
 </html>

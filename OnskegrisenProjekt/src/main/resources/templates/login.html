@@ -2,51 +2,35 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/static/register-user.css" th:href="@{/register-user.css}">
-    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}">
-    <title>Login</title>
+    <title>Ønskegrisen - Login</title>
+    <link rel="stylesheet" th:href="@{/register-user.css}">
+    <link rel="stylesheet" th:href="@{/main.css}">
 </head>
 <body>
 <div class="wrapper">
+    <div th:insert="~{fragments/topnav :: topnav}"></div>
 
-    <div class="topnav">
-
-        <a href="/home" class="title-link">
-            <h1 class="title">Ønskegrisen</h1>
-        </a>
-        <a href="/login">Log ind</a>
-        <a href="/users/register">Opret bruger</a>
-        <a href="https://x.com/KasperMadsen9">Find os på X</a>
-        <a href="#about">Om</a>
+    <div class="form-container">
+        <h1>Log ind på Ønskegrisen</h1>
+        <div class="form-box">
+            <form th:action="@{/login}" th:object="${bruger}" method="post">
+                <div>
+                    <label for="username">Brugernavn:</label>
+                    <input type="text" id="username" th:field="*{username}" placeholder="Indtast brugernavn" required />
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" th:field="*{password}" placeholder="Indtast password" required />
+                </div>
+                <div class="button-container">
+                    <button type="submit">Log ind</button>
+                </div>
+            </form>
+        </div>
     </div>
 
-<div class="container">
-
-<h1>Login</h1>
-    <div class="form-box">
-        <form th:action="@{/login}" th:object="${bruger}" method="post">
-            <label>Brugernavn:</label>
-            <input type="text" th:field="*{username}" required/>
-
-            <label>Password:</label>
-            <input type="password" th:field="*{password}" required/>
-
-            <div class="button-container">
-                <button type="submit">Log ind</button>
-            </div>
-        </form>
+    <div th:insert="~{fragments/footer :: footer}"></div>
 
 </div>
-
-</div>
-    <footer class="footer">
-        Kontakt os <br>
-        <a href="mailto:Ønske.grisen@gmail.com">Ønske.grisen@gmail.com</a><br>
-        +45 10 20 30 40 <br>
-        @ØnskeGrisen
-    </footer>
-</div>
-
 </body>
-
 </html>
