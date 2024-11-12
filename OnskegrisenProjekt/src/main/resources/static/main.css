@@ -1,4 +1,3 @@
-/* main.css */
 body {
     margin: 0;
     padding: 0;
@@ -21,16 +20,12 @@ html, body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
-}
-
-.container {
-    flex: 1;
-    text-align: center;
-    padding-top: 50px;
+    justify-content: space-between;
 }
 
 .topnav {
     display: flex;
+    align-items: center;
     justify-content: center;
     background-color: rgb(104, 124, 101);
     padding: 10px;
@@ -43,13 +38,15 @@ html, body {
 }
 
 .title {
-    position: fixed;
-    left: 0;
     font-size: 36px;
     margin: 0;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
     padding-left: 10px;
+    display: flex;
+    align-items: center;
+    height: 100%;
+    left: 0;
 }
 
 .title-link {
@@ -73,7 +70,7 @@ html, body {
 }
 
 .topnav a:not(.title-link):hover {
-    background-color: #b5d7b0; /* Apply hover effect only to other links */
+    background-color: #b5d7b0;
 }
 
 .footer {
@@ -81,7 +78,6 @@ html, body {
     padding: 20px;
     background-color: rgb(104, 124, 101);
     color: white;
-    bottom: 0;
     width: 100%;
     margin-top: auto;
 }

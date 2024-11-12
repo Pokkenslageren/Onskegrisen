@@ -9,45 +9,30 @@
 <body>
 <div class="wrapper">
 
-    <div class="topnav">
-        <a href="/home" class="title-link">
-            <h1 class="title">Ønskegrisen</h1>
-        </a>
-        <a href="/login">Log ind</a>
-        <a href="/users/register">Opret bruger</a>
-        <a href="https://x.com/KasperMadsen9">Find os på X</a>
-        <a href="#about">Om</a>
-    </div>
+    <div th:insert="~{fragments/topnav :: topnav}"></div>
 
 
-    <div class="container">
+    <div class="form-container">
         <h1>Opret dig på Ønskegrisen</h1>
         <div class="form-box">
-        <form th:action="@{/users/register}" th:object="${bruger}" method="post">
-            <div>
-                <label>Brugernavn:</label>
-                <input type="text" th:field="*{username}" />
-            </div>
-            <br>
-            <div>
-                <label>Password:</label>
-                <input type="password" th:field="*{password}" />
-            </div>
-            <div class="button-container">
-                <button type="submit">Opret bruger</button>
-                <a href="/users"><button type="button">Fortryd</button></a>
-            </div>
-        </form>
+            <form th:action="@{/users/register}" th:object="${bruger}" method="post">
+                <div>
+                    <label for="username">Brugernavn:</label>
+                    <input type="text" id="username" th:field="*{username}" placeholder="Indtast brugernavn" required />
+                </div>
+                <div>
+                    <label for="password">Password:</label>
+                    <input type="password" id="password" th:field="*{password}" placeholder="Indtast password" required />
+                </div>
+                <div class="button-container">
+                    <button type="submit">Opret bruger</button>
+                </div>
+            </form>
         </div>
     </div>
 
-    
-    <footer class="footer">
-        Kontakt os <br>
-        <a href="mailto:Ønske.grisen@gmail.com">Ønske.grisen@gmail.com</a><br>
-        +45 10 20 30 40 <br>
-        @ØnskeGrisen
-    </footer>
+    <div th:insert="~{fragments/footer :: footer}"></div>
+
 </div>
 </body>
 </html>
