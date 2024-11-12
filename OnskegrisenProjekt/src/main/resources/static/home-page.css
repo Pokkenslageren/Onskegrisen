@@ -1,0 +1,23 @@
+/* home-page.css */
+body {
+    background-image: url("logoOnskegrisen.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
+    background-size: auto;
+}
+
+
+.form-container {
+    margin: 30px auto;
+    width: 50%;
+}
+
+h1 {
+    color: white;
+}
+
+a {
+    color: #fff;
+}
+

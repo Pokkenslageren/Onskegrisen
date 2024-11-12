@@ -15,10 +15,7 @@ import java.util.ArrayList;
 @RequestMapping("")
 public class OnskeController {
 
-@GetMapping("/landing")
-String landingPage(){
-    return "home-page";
-}
+
 
 
     private final OnskeService onskeService;
@@ -36,6 +33,11 @@ String landingPage(){
     public String home(){
         return "landing-page";
     }*/
+
+    @GetMapping("/home")
+    String landingPage(){
+        return "home-page";
+    }
 
     @GetMapping("/login")
     public String login(Model model){
