@@ -8,14 +8,20 @@
 </head>
 <body>
 <div class="wrapper">
+
     <div class="topnav">
-        <h1 class="title">Ønskegrisen</h1>
+        <!-- Title as a button linking to the homepage -->
+        <a href="/home" class="title-link">
+            <h1 class="title">Ønskegrisen</h1>
+        </a>
         <a href="/login">Login</a>
         <a href="/users/register">Ny Bruger</a>
         <a href="https://x.com/KasperMadsen9">Find os på X</a>
         <a href="#about">Om</a>
     </div>
+
 <div class="container">
+
 <h1>Login</h1>
     <div class="form-box">
 <form action="#" th:action="@{/logins}" th:object="${bruger}" method="post">
@@ -28,12 +34,14 @@
         <label>Password:</label>
         <input type="text" th:field="*{password}"/>
     </div>
+
     <div class="button-container">
         <button type="submit">OK</button>
         <a th:href="@{http://localhost:8080/users/{user}(user=${username})}">
             <button type="button">Fortryd</button>
         </a>
     </div>
+
 </form>
 
 </div>

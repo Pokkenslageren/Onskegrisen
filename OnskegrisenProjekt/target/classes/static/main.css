@@ -52,6 +52,17 @@ html, body {
     padding-left: 10px;
 }
 
+.title-link {
+    display: inline-block;
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+    padding: 0;
+    margin: 0;
+    background-color: transparent;
+}
+
+
 .topnav a {
     color: white;
     text-decoration: none;
@@ -61,10 +72,9 @@ html, body {
     transition: background-color 0.3s ease;
 }
 
-.topnav a:hover {
-    background-color: #b5d7b0;
+.topnav a:not(.title-link):hover {
+    background-color: #b5d7b0; /* Apply hover effect only to other links */
 }
-
 
 .footer {
     text-align: center;
