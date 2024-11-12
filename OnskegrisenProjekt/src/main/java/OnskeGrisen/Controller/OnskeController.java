@@ -126,10 +126,10 @@ public class OnskeController {
         return "create-wishlist";
     }
 
-    @PostMapping("/users/createwishlist") //eller add
-    public String saveWishList(@ModelAttribute WishList wishList) {
+    @PostMapping("/users/createwishlist/{user}") //eller add
+    public String saveWishList(@PathVariable ("user")String user, @ModelAttribute WishList wishList) {
         onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
-        return "redirect:/users"; //skal redircte til siden for den tilhørende wishlist
+        return "redirect:/users/{user}"; //skal redircte til siden for den tilhørende wishlist
     }
 
     @GetMapping("/users/{user}/createwish") //kan både gøres fra profilsiden og fra den enkelte ønskeliste
