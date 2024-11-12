@@ -14,7 +14,7 @@ public class WishRepository {
 
     String database = "jdbc:mysql://localhost:3306/onskegrisen";
     String dbUsername = "root";
-    String dbPassword = "Illcosby91";
+    String dbPassword = "root";
     Connection conn;
 
 

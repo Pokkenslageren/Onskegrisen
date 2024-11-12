@@ -10,7 +10,7 @@
 <div class="wrapper">
 
     <div class="topnav">
-        <!-- Title as a button linking to the homepage -->
+
         <a href="/home" class="title-link">
             <h1 class="title">Ønskegrisen</h1>
         </a>
@@ -24,25 +24,17 @@
 
 <h1>Login</h1>
     <div class="form-box">
-<form action="#" th:action="@{/logins}" th:object="${bruger}" method="post">
-    <div>
-        <label>Brugernavn:</label>
-        <input type="text" th:field="*{username}"/>
-    </div>
-    <br>
-    <div>
-        <label>Password:</label>
-        <input type="text" th:field="*{password}"/>
-    </div>
+        <form th:action="@{/login}" th:object="${bruger}" method="post">
+            <label>Brugernavn:</label>
+            <input type="text" th:field="*{username}" required/>
 
-    <div class="button-container">
-        <button type="submit">OK</button>
-        <a th:href="@{http://localhost:8080/users/{user}(user=${username})}">
-            <button type="button">Fortryd</button>
-        </a>
-    </div>
+            <label>Password:</label>
+            <input type="password" th:field="*{password}" required/>
 
-</form>
+            <div class="button-container">
+                <button type="submit">Log ind</button>
+            </div>
+        </form>
 
 </div>
 
