@@ -4,12 +4,9 @@ import OnskeGrisen.Model.User;
 import OnskeGrisen.Model.Wish;
 import OnskeGrisen.Model.WishList;
 import OnskeGrisen.Service.OnskeService;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 
@@ -20,7 +17,7 @@ public class OnskeController {
 
 @GetMapping("/landing")
 String landingPage(){
-    return "landing-page";
+    return "home-page";
 }
 
 
