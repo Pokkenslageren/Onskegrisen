@@ -10,11 +10,12 @@ header img{
     padding-bottom: 20px;
     float: left;
     display: block;
+    //Hey
 
 }
 .background-img{
     /*Billed som bliver brugt som baggrund*/
-    background-image: url("../templates/logoOnskegrisen.jpeg")
+    background-image: url("../templates/logoOnskegrisen.jpeg");
     position: relative;
 }
 .container{

@@ -18,6 +18,11 @@ import java.util.ArrayList;
 @RequestMapping("")
 public class OnskeController {
 
+@GetMapping("/landing")
+String landingPage(){
+    return "landing-page";
+}
+
 
     private final OnskeService onskeService;
 
