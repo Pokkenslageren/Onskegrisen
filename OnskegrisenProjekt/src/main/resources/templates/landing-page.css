@@ -14,7 +14,7 @@ header img{
 }
 .background-img{
     /*Billed som bliver brugt som baggrund*/
-    background-image: url("logoOnskegrisen.jpeg")
+    background-image: url("logoOnskegrisen.jpeg");
     position: relative;
 }
 .container{
