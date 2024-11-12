@@ -41,15 +41,14 @@ public class OnskeController {
 
     @GetMapping("/login")
     public String login(Model model){
-        User bruger = new User();
-        model.addAttribute("bruger",bruger);
+        model.addAttribute("bruger", new User());
         return "login";
     }
 
-    @PostMapping("logins")
+    @PostMapping("/login")
     public String logins(@ModelAttribute User user, Model model){
         model.addAttribute("bruger",user);
-        return "logins";
+        return "redirect:/users/" + user.getUsername();
     }
 
     @GetMapping("/users")
