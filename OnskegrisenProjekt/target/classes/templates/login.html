@@ -11,8 +11,8 @@
     <div th:insert="~{fragments/topnav :: topnav}"></div>
 
     <div class="form-container">
-        <h1>Log ind på Ønskegrisen</h1>
         <div class="form-box">
+            <h1>Log ind på Ønskegrisen</h1>
             <form th:action="@{/login}" th:object="${bruger}" method="post">
                 <div>
                     <label for="username">Brugernavn:</label>
