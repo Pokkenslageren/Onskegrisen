@@ -2,27 +2,50 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="main.css">
-    <title>Tilføj Bruger</title>
+    <link rel="stylesheet" href="/static/register-user.css" th:href="@{/register-user.css}">
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}">
 </head>
+
 <body>
-<h1>Tilføj Bruger</h1>
-<form action="#" th:action="@{/users/register}" th:object="${bruger}" method="post">
-    <div>
-        <label>Brugernavn:</label>
-        <input type="text" th:field="*{username}"/>
+<div class="wrapper">
+
+    <div class="topnav">
+        <h1 class="title">Ønskegrisen</h1>
+        <a href="/login">Login</a>
+        <a href="/users/register">Ny Bruger</a>
+        <a href="https://x.com/KasperMadsen9">Find os på X</a>
+        <a href="#about">Om</a>
     </div>
-    <br>
-    <div>
-        <label>Password:</label>
-        <input type="text" th:field="*{password}"/>
+
+
+    <div class="container">
+        <h1>Tilføj Bruger</h1>
+        <div class="form-box">
+        <form th:action="@{/users/register}" th:object="${bruger}" method="post">
+            <div>
+                <label>Brugernavn:</label>
+                <input type="text" th:field="*{username}" />
+            </div>
+            <br>
+            <div>
+                <label>Password:</label>
+                <input type="password" th:field="*{password}" />
+            </div>
+            <div class="button-container">
+                <button type="submit">OK</button>
+                <a href="/users"><button type="button">Fortryd</button></a>
+            </div>
+        </form>
+        </div>
     </div>
-    <div class="button-container">
-        <button type="submit">OK</button>
-        <a href="http://localhost:8080/users">
-            <button type="button">Fortryd</button>
-        </a>
-    </div>
-</form>
+
+    
+    <footer class="footer">
+        Kontakt os <br>
+        <a href="mailto:Ønske.grisen@gmail.com">Ønske.grisen@gmail.com</a><br>
+        +45 10 20 30 40 <br>
+        @ØnskeGrisen
+    </footer>
+</div>
 </body>
 </html>

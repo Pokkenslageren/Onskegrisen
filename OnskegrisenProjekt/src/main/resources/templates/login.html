@@ -2,11 +2,22 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="/static/register-user.css" th:href="@{/register-user.css}">
+    <link rel="stylesheet" href="../static/main.css" th:href="@{/main.css}">
     <title>Login</title>
 </head>
 <body>
+<div class="wrapper">
+    <div class="topnav">
+        <h1 class="title">Ønskegrisen</h1>
+        <a href="/login">Login</a>
+        <a href="/users/register">Ny Bruger</a>
+        <a href="https://x.com/KasperMadsen9">Find os på X</a>
+        <a href="#about">Om</a>
+    </div>
+<div class="container">
 <h1>Login</h1>
+    <div class="form-box">
 <form action="#" th:action="@{/logins}" th:object="${bruger}" method="post">
     <div>
         <label>Brugernavn:</label>
@@ -24,5 +35,18 @@
         </a>
     </div>
 </form>
+
+</div>
+
+</div>
+    <footer class="footer">
+        Kontakt os <br>
+        <a href="mailto:Ønske.grisen@gmail.com">Ønske.grisen@gmail.com</a><br>
+        +45 10 20 30 40 <br>
+        @ØnskeGrisen
+    </footer>
+</div>
+
 </body>
+
 </html>
