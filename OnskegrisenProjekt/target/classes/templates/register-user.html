@@ -13,15 +13,15 @@
         <a href="/home" class="title-link">
             <h1 class="title">Ønskegrisen</h1>
         </a>
-        <a href="/login">Login</a>
-        <a href="/users/register">Ny Bruger</a>
+        <a href="/login">Log ind</a>
+        <a href="/users/register">Opret Bruger</a>
         <a href="https://x.com/KasperMadsen9">Find os på X</a>
         <a href="#about">Om</a>
     </div>
 
 
     <div class="container">
-        <h1>Tilføj Bruger</h1>
+        <h1>Opret dig på Ønskegrisen</h1>
         <div class="form-box">
         <form th:action="@{/users/register}" th:object="${bruger}" method="post">
             <div>
@@ -34,7 +34,7 @@
                 <input type="password" th:field="*{password}" />
             </div>
             <div class="button-container">
-                <button type="submit">OK</button>
+                <button type="submit">Opret bruger</button>
                 <a href="/users"><button type="button">Fortryd</button></a>
             </div>
         </form>
