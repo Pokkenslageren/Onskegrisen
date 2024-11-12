@@ -1,0 +1,49 @@
+
+.form-box {
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    color: #333;
+}
+
+
+.form-box form div {
+    margin-bottom: 15px;
+}
+
+.form-box label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-box input[type="text"],
+.form-box input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px; 
+    outline: none;
+}
+
+.form-box button {
+    background-color: #68b684;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.form-box button:hover {
+    background-color: #5a9c70;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

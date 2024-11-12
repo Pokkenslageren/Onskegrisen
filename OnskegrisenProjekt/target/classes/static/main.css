@@ -8,6 +8,19 @@ body {
     background-color: #b5d7b0;
     font-family: Arial, Helvetica, sans-serif;
     color: white;
+
+}
+
+html, body {
+    height: 100%;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 .container {
@@ -53,21 +66,21 @@ body {
 }
 
 
-#pageFooter {
+.footer {
     text-align: center;
     padding: 20px;
     background-color: rgb(104, 124, 101);
     color: white;
-    position: relative;
     bottom: 0;
     width: 100%;
+    margin-top: auto;
 }
 
-#pageFooter a {
+.footer a {
     color: #9acd32;
     text-decoration: none;
 }
 
-#pageFooter a:hover {
+.footer a:hover {
     text-decoration: underline;
 }
