@@ -8,10 +8,10 @@
 <body>
 <h1>Tilføj Ønskeliste</h1>
 <!-- <form action="#" th:action="@{/users/${user}/save-wishlist(user=${bruger.getUsername()})}" th:object="${onskeliste}" method="post"> -->
-<form action="#" th:action="@{/users/createwishlist}" th:object="${onskeliste}" method="post">
+<form action="#" th:action="@{/users/createwishlist/{user}(user=${bruger.username})}" th:object="${onskeliste}" method="post">
     <div>
         <label>Navn på ejer af ønskeliste:</label>
-        <input type="hidden" th:value="${bruger.username}" th:attr=""/>
+        <input type="text" th:field="*{userWishListOwner}"/>
     </div>
     <br>
     <div>
@@ -26,7 +26,7 @@
 
     <div class="button-container">
         <button type="submit">Opret ønskeliste</button>
-        <a href="http://localhost:8080/users">
+        <a th:href="@{http://localhost:8080/users/{user}(user=${bruger.username})}">
             <button type="button">Fortryd</button>
         </a>
     </div>
