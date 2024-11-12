@@ -26,9 +26,8 @@ html, body {
 .topnav {
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-between;
     background-color: rgb(104, 124, 101);
-    padding: 10px;
     margin-bottom: 20px;
     border-radius: 10px;
     position: fixed;
@@ -37,16 +36,19 @@ html, body {
     width: 100%;
 }
 
+.navbuttons {
+    display: flex;
+    justify-content: space-between;
+}
+
 .title {
     font-size: 36px;
     margin: 0;
     color: white;
     text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
-    padding-left: 10px;
     display: flex;
-    align-items: center;
     height: 100%;
-    left: 0;
+    
 }
 
 .title-link {
@@ -61,6 +63,8 @@ html, body {
 
 
 .topnav a {
+    display: flex;
+    justify-content: center;
     color: white;
     text-decoration: none;
     padding: 14px 20px;
@@ -71,6 +75,16 @@ html, body {
 
 .topnav a:not(.title-link):hover {
     background-color: #b5d7b0;
+}
+
+.slogan {
+    font-family: serif;
+    font-style: italic;
+    font-size: 20px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 14px 20px;
+    margin: 0 10px;
 }
 
 .footer {
