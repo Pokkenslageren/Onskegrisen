@@ -1,4 +1,9 @@
-
+body {
+    background-image: url("LogoOnskegrisen3.jpeg");
+    background-repeat: no-repeat;
+    background-size: auto;
+    background-position: center;
+}
 .form-container {
     display: flex;
     flex-direction: column;
