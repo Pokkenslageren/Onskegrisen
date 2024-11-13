@@ -13,11 +13,13 @@
 
     <div class="form-container">
      <div class="form-box">
+
 <h1>Tilføj Ønskeliste</h1>
+
 <form action="#" th:action="@{/users/createwishlist/{user}(user=${bruger.username})}" th:object="${onskeliste}" method="post">
 
         <input type="hidden" th:field="*{userWishListOwner}" th:value="${bruger.username}"/>
-    <br>
+
     <div>
         <label>Giv din ønskeliste et navn:</label>
         <input type="text" th:field="*{userWishListName}"/>
