@@ -1,9 +1,4 @@
-body {
-    background-image: url("LogoOnskegrisen3.jpeg");
-    background-repeat: no-repeat;
-    background-size: auto;
-    background-position: center;
-}
+
 .form-container {
     display: flex;
     flex-direction: column;
@@ -52,39 +47,6 @@ body {
     border-radius: 8px;
     outline: none;
     box-sizing: border-box;
-}
-
-.button-container {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-}
-
-.form-box button {
-    background-color: #68b684;
-    color: white;
-    border: none;
-    padding: 12px 20px;
-    border-radius: 8px;
-    cursor: pointer;
-    box-sizing: border-box;
-}
-
-.form-box button:hover {
-    background-color: #5a9c70;
-}
-
-.button-container button {
-    width: 100%;
-}
-
-.button-container a button {
-    background-color: #b5d7b0;
-}
-
-.button-container a button:hover {
-    background-color: #9eb28f;
 }
 
 .login-container h1 {

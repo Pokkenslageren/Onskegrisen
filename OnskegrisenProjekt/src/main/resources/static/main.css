@@ -28,6 +28,34 @@ html, body {
     justify-content: space-between;
 }
 
+
+.button-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+
+.button-container button {
+    background-color: #68b684;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.button-container button:hover {
+    background-color: #5a9c70;
+}
+
+.button-container button {
+    width: 100%;
+}
+
+
 .topnav {
     display: flex;
     align-items: center;
@@ -93,6 +121,7 @@ html, body {
 }
 
 .footer {
+    position: relative;
     text-align: center;
     padding: 10px;
     background-color: rgb(104, 124, 101);
