@@ -3,7 +3,6 @@ package OnskeGrisen.Service;
 import OnskeGrisen.Model.User;
 import OnskeGrisen.Model.Wish;
 import OnskeGrisen.Model.WishList;
-import OnskeGrisen.Repository.LoginRepository;
 import OnskeGrisen.Repository.UserRepository;
 import OnskeGrisen.Repository.WishListRepository;
 import OnskeGrisen.Repository.WishRepository;
@@ -19,7 +18,6 @@ public class OnskeService {
     private final UserRepository userRepository = new UserRepository();
     private final WishRepository wishRepository = new WishRepository();
     private final WishListRepository wishListRepository = new WishListRepository();
-    private final LoginRepository loginRepository = new LoginRepository();
 
     public ArrayList<User> readAllUsers() {
         return userRepository.readAllUsers();
