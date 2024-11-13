@@ -101,8 +101,7 @@ public class OnskeController {
     @GetMapping("/{user}/{wishlist}")
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model) {
         User bruger = onskeService.readUser(user);
-        //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?
-        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger, wishlist);//er denne tom? Skal den fyldes ud
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger, wishlist);
         String onskelistebeskrivelse = onskeService.getWishListDescription(bruger, wishlist);
         model.addAttribute("onskelistenavn",wishlist);
         model.addAttribute("bruger", bruger);
@@ -128,21 +127,23 @@ public class OnskeController {
         return "redirect:/users/{user}";
     }
 
-    @GetMapping("/users/{user}/createwish") //kan både gøres fra profilsiden og fra den enkelte ønskeliste
-    public String createWish(@PathVariable("user") String user, Model model) {
+    @GetMapping("/users/{user}/{wishlist}/createwish")
+    public String createWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, Model model) {
         User bruger = onskeService.readUser(user);
         Wish wish = new Wish();
+        wish.setWishListName(wishlist); //
         model.addAttribute("bruger", bruger);
         model.addAttribute("onske", wish);
+        model.addAttribute("onskelistenavn", wishlist);
         return "create-wish";
     }
 
-    @PostMapping("/users/{user}/createwish")
-    //TODO: super sus tilgang, men wish.getWishListOwner() returnerer null, for some reason
-    public String saveWish(@PathVariable("user") String user, @ModelAttribute Wish wish, Model model) {
-        model.addAttribute("bruger", user);
-        onskeService.createWish(user, wish.getWishListName(), wish.getWishTitle(), wish.getWishDescription(), wish.getWishPrice(), wish.getWishLink(), false);
-        return "redirect:/users/{user}";
+    @PostMapping("/users/{user}/{wishlist}/createwish")
+    public String saveWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, @ModelAttribute Wish wish) {
+
+        wish.setWishListName(wishlist);
+        onskeService.createWish(user, wishlist, wish.getWishTitle(), wish.getWishDescription(), wish.getWishPrice(), wish.getWishLink(), false);
+        return "redirect:/users/" + user + "/" + wishlist;
     }
 
     @GetMapping("/users/{user}/{wishlist}/reservewish")
