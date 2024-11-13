@@ -10,7 +10,7 @@ public class UserRepository {
     ArrayList<User> users = new ArrayList<>();
     String database = "jdbc:mysql://localhost:3306/onskegrisen";
     String dbUsername = "root";
-    String dbPassword = "root";
+    String dbPassword = "Illcosby91";
     Connection conn;
 
 

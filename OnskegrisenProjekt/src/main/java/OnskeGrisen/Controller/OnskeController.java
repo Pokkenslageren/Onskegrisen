@@ -146,7 +146,7 @@ public class OnskeController {
     public String saveWish(@PathVariable("user") String user, @ModelAttribute Wish wish, Model model) {
         model.addAttribute("bruger", user);
         onskeService.createWish(user, wish.getWishListName(), wish.getWishTitle(), wish.getWishDescription(), wish.getWishPrice(), wish.getWishLink(), false);
-        return "redirect:/users";
+        return "redirect:/users/{user}";
     }
 
     @GetMapping("/users/{user}/{wishlist}/reservewish")
