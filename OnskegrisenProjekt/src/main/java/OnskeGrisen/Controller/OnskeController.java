@@ -91,19 +91,18 @@ public class OnskeController {
         return "redirect:/users/{user}";
     }
 
-    @GetMapping("/{user}/{wishlist}/{wish}/delete")
-    public String deleteWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, @PathVariable("wish")String wish) {
-
-        onskeService.deleteWish(wishlist,wish);
-        return "redirect:/{user}/{wishlist}";
+    @GetMapping("/users/{user}/{wishlist}/{wish}/delete")
+    public String deleteWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, @PathVariable("wish") String wish) {
+        onskeService.deleteWish(wishlist, wish);
+        return "redirect:/users/{user}/{wishlist}";
     }
 
-    @GetMapping("/{user}/{wishlist}")
-    public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model) {
+    @GetMapping("/users/{user}/{wishlist}")
+    public String readWishlist(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, Model model) {
         User bruger = onskeService.readUser(user);
         ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger, wishlist);
         String onskelistebeskrivelse = onskeService.getWishListDescription(bruger, wishlist);
-        model.addAttribute("onskelistenavn",wishlist);
+        model.addAttribute("onskelistenavn", wishlist);
         model.addAttribute("bruger", bruger);
         model.addAttribute("onskeliste", onskeliste);
         model.addAttribute("onskelistebeskrivelse", onskelistebeskrivelse);
@@ -111,7 +110,6 @@ public class OnskeController {
     }
 
     @GetMapping("/users/{user}/createwishlist")
-
     public String createWishList(@PathVariable("user") String user, Model model) {
         User bruger = onskeService.readUser(user);
         WishList wishList = new WishList();
@@ -140,7 +138,6 @@ public class OnskeController {
 
     @PostMapping("/users/{user}/{wishlist}/createwish")
     public String saveWish(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist, @ModelAttribute Wish wish) {
-
         wish.setWishListName(wishlist);
         onskeService.createWish(user, wishlist, wish.getWishTitle(), wish.getWishDescription(), wish.getWishPrice(), wish.getWishLink(), false);
         return "redirect:/users/" + user + "/" + wishlist;
