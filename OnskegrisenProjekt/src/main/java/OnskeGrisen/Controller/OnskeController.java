@@ -102,10 +102,12 @@ public class OnskeController {
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model) {
         User bruger = onskeService.readUser(user);
         //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?
-        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger, wishlist); //er denne tom? Skal den fyldes ud
+        ArrayList<Wish> onskeliste = onskeService.fetchWishesFromWishlist(bruger, wishlist);//er denne tom? Skal den fyldes ud
+        String onskelistebeskrivelse = onskeService.getWishListDescription(bruger, wishlist);
         model.addAttribute("onskelistenavn",wishlist);
         model.addAttribute("bruger", bruger);
         model.addAttribute("onskeliste", onskeliste);
+        model.addAttribute("onskelistebeskrivelse", onskelistebeskrivelse);
         return "wishlist";
     }
 

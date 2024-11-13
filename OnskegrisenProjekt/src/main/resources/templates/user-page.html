@@ -9,6 +9,7 @@
 <body>
 
 <div class="wrapper">
+
     <div th:replace="fragments/topnav :: topnav"></div>
 
     <div class="userpage">
@@ -47,8 +48,6 @@
         <a th:href="@{/users/{user}/createwishlist(user=${bruger.username})}">
                 <button type="button">Tilføj Ønskeliste</button>
         </a>
-            <div class="button-container">
-    </div>
         </div>
 </div>
 </body>
