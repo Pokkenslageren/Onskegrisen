@@ -112,10 +112,10 @@ public class OnskeController {
     }
 
     @GetMapping("/users/{user}/createwishlist")
-    //behøver vi at køre {user}/addwishlist? Kan den ikke bare være /users/addwishlist
+
     public String createWishList(@PathVariable("user") String user, Model model) {
         User bruger = onskeService.readUser(user);
-        WishList wishList = new WishList(); //dette object "peger" ned på postmappingen.
+        WishList wishList = new WishList();
         model.addAttribute("bruger", bruger);
         model.addAttribute("onskeliste", wishList);
         return "create-wishlist";
@@ -123,8 +123,9 @@ public class OnskeController {
 
     @PostMapping("/users/createwishlist/{user}") //eller add
     public String saveWishList(@PathVariable ("user")String user, @ModelAttribute WishList wishList) {
+        wishList.setUserWishListOwner(user);
         onskeService.createWishList(wishList.getUserWishListOwner(), wishList.getUserWishListName(), wishList.getWishListDescription());
-        return "redirect:/users/{user}"; //skal redircte til siden for den tilhørende wishlist
+        return "redirect:/users/{user}";
     }
 
     @GetMapping("/users/{user}/createwish") //kan både gøres fra profilsiden og fra den enkelte ønskeliste
