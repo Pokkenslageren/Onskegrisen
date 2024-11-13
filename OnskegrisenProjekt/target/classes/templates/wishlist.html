@@ -28,7 +28,7 @@
         <td th:text="${onske.getWishLink()}"></td>  <!-- som link med href? -->
         <td th:text="${onske.getIsReserved()}"></td>
         <td>
-            <form th:action="@{{user}/{wishlist}/{wish}/delete(user=${bruger.getUsername()}, wishlist=${onskelistenavn}, wish=${onske.getWishTitle()})}">
+            <form th:action="@{{wishlist}/{wish}/delete(user=${bruger.getUsername()}, wishlist=${onskelistenavn}, wish=${onske.getWishTitle()})}">
                 <input type="submit" th:value="Slet">
             </form>
         </td>
