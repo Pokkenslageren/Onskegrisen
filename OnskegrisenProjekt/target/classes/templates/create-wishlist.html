@@ -2,20 +2,26 @@
 <html xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" th:href="@{/main.css}">
+    <link rel="stylesheet" th:href="@{/formbox.css}">
+    <link rel="stylesheet" th:href="@{/createwishandlist.css}">
     <title>Tilføj Ønskeliste</title>
 </head>
 <body>
+<div class="wrapper">
+    <div th:insert="~{fragments/topnav :: topnav}"></div>
+
+    <div class="form-container">
+     <div class="form-box">
+
 <h1>Tilføj Ønskeliste</h1>
-<!-- <form action="#" th:action="@{/users/${user}/save-wishlist(user=${bruger.getUsername()})}" th:object="${onskeliste}" method="post"> -->
+
 <form action="#" th:action="@{/users/createwishlist/{user}(user=${bruger.username})}" th:object="${onskeliste}" method="post">
+
+        <input type="hidden" th:field="*{userWishListOwner}" th:value="${bruger.username}"/>
+
     <div>
-        <label>Navn på ejer af ønskeliste:</label>
-        <input type="text" th:field="*{userWishListOwner}"/>
-    </div>
-    <br>
-    <div>
-        <label>Navn på ønskeliste:</label>
+        <label>Giv din ønskeliste et navn:</label>
         <input type="text" th:field="*{userWishListName}"/>
     </div>
     <br>
@@ -25,12 +31,17 @@
     </div>
 
     <div class="button-container">
-        <button type="submit">Opret ønskeliste</button>
+        <button type="submit" class="create">Opret ønskeliste</button>
         <a th:href="@{http://localhost:8080/users/{user}(user=${bruger.username})}">
             <button type="button">Fortryd</button>
         </a>
     </div>
 </form>
+         </div>
+    </div>
 
+    <div th:insert="~{fragments/footer :: footer}"></div>
+
+</div>
 </body>
 </html>

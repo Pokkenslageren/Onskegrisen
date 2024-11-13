@@ -14,7 +14,7 @@ public class WishListRepository {
     ArrayList<Wish> wishes = new ArrayList<>();
     String database = "jdbc:mysql://localhost:3306/onskegrisen";
     String dbUsername = "root";
-    String dbPassword = "Illcosby91";
+    String dbPassword = "root";
     Connection conn;
 
 
@@ -37,6 +37,30 @@ public class WishListRepository {
         catch(Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public String readWishListDescription(User user, String userWishListName) {
+        String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
+
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection(database, dbUsername, dbPassword);
+            if (conn == null) {
+                System.out.println("Connection not established");
+            }
+            PreparedStatement pstmt = conn.prepareStatement(query);
+            pstmt.setString(1, user.getUsername());
+            pstmt.setString(2, userWishListName);
+            ResultSet rs = pstmt.executeQuery();
+
+            if(rs.next()) {
+                return rs.getString("wishlist_description");
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return null;
     }
 
     public WishList readWishListByName(User user, String userWishListName) {

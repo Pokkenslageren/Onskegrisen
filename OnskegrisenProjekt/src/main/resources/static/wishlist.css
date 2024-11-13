@@ -1,0 +1,11 @@
+.header-container {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.header-container h1,
+.header-container h2,
+.header-container p{
+    white-space: nowrap;
+}

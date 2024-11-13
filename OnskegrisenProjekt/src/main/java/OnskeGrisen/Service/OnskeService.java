@@ -9,9 +9,6 @@ import OnskeGrisen.Repository.WishRepository;
 import org.springframework.stereotype.Service;
 import java.util.*;
 
-
-import java.lang.reflect.Array;
-
 @Service
 public class OnskeService {
 
@@ -43,7 +40,9 @@ public class OnskeService {
         userRepository.createUser(user);
     }
 
-    public WishList readWishlist(User user, String name){return wishListRepository.readWishListByName(user, name);}
+    public String getWishListDescription(User user, String wishListName){
+        return wishListRepository.readWishListDescription(user,wishListName);
+    }
 
     public void fetchOwnerWishLists(User user){
         wishListRepository.setOwnerWishlists(user);
