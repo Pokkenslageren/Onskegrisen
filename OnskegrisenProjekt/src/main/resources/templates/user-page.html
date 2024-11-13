@@ -31,7 +31,7 @@
             <td th:text="${wishlist.userWishListName}"></td>
             <td th:text="${wishlist.wishListDescription}"></td>
             <td>
-                <form th:action="@{/{user}/{wishlist}(user=${bruger.username}, wishlist=${wishlist.userWishListName})}"
+                <form th:action="@{/users/{user}/{wishlist}(user=${bruger.username}, wishlist=${wishlist.userWishListName})}"
                       method="get">
                     <input type="submit" value="Se ønskeliste">
                 </form>

@@ -43,8 +43,8 @@
 
     <div class="button-container">
         <button type="submit" class="create">Opret ønske</button>
-        <a href="http://localhost:8080/users/">
-            <button type="button">Fortryd</button>
+        <a th:href="@{/users/{user}/{wishlist}(user=${bruger.username}, wishlist=${onskelistenavn})}">
+            <button type="button" class="back">Fortryd</button>
         </a>
     </div>
 </form>
