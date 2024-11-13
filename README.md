@@ -1,4 +1,4 @@
 # Ønskegrisen - en ønskeliste i skyen
-<img width="854" alt="Screenshot 2024-10-30 at 09 56 29" src="https://github.com/user-attachments/assets/80a8a595-0b84-4c5f-b6fd-c1cd55d401d4">
+![LogoOnskegrisen3](https://github.com/user-attachments/assets/e20cf639-8a05-4b40-beae-1c6d79cdbc43)
 
 Semesterprojekt 2 på andet semester udarbejdet af Julius, Kalle, Magnus og Kasper.
