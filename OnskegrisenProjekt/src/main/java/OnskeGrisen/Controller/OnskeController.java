@@ -83,16 +83,9 @@ public class OnskeController {
     }
 
 
-    @GetMapping("/users/{user}/delete")
-    // todo undersøg om dette skal være post- eller get-mapping. Undersøg om DELETEmapping eventuelt kan virke
-    public String deleteUser(@PathVariable("user") String user) { // todo hvad med @path variable?
-        //onskeService.deleteWish
-        //onskeService.deleteWishLists(user)
-        onskeService.deleteUser(user);
-        return "redirect:/users";
-    }
 
-    @GetMapping("/users/{user}/{wishlist}/delete")
+
+    @GetMapping("/{user}/{wishlist}/delete")
     public String deleteWishList(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist) {
         onskeService.deleteWishList(user, wishlist);
         return "redirect:/users/{user}";
@@ -105,7 +98,7 @@ public class OnskeController {
         return "redirect:/users/{user}";
     }
 
-    @GetMapping("/users/{user}/{wishlist}")
+    @GetMapping("/{user}/{wishlist}")
     public String readWishlist(@PathVariable String user, @PathVariable String wishlist, Model model) {
         User bruger = onskeService.readUser(user);
         //onskeService.fetchWishesFromWishlist(bruger,onskeService.readWishlist(bruger, wishlist)); //Returner et array i stedet?

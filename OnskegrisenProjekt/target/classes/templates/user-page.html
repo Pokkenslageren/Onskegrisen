@@ -37,7 +37,7 @@
             </td>
             <td>
                 <form th:action="@{/{user}/{wishlist}/delete(user=${bruger.username}, wishlist=${wishlist.userWishListName})}"
-                      method="post">
+                      method="get">
                     <input type="submit" value="Slet ønskeliste">
                 </form>
             </td>
