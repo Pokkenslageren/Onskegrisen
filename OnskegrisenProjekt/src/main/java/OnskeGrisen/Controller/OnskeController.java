@@ -35,7 +35,7 @@ public class OnskeController {
     }*/
 
 
-    @GetMapping("/home")
+    @GetMapping("")
     String landingPage(){
         return "home-page";
     }
