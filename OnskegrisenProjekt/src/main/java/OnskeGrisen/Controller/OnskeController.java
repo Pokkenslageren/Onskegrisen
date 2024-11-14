@@ -34,6 +34,7 @@ public class OnskeController {
         return "landing-page";
     }*/
 
+
     @GetMapping("/home")
     String landingPage(){
         return "home-page";
@@ -81,9 +82,6 @@ public class OnskeController {
 
         return "user-page";
     }
-
-
-
 
     @GetMapping("/{user}/{wishlist}/delete")
     public String deleteWishList(@PathVariable("user") String user, @PathVariable("wishlist") String wishlist) {

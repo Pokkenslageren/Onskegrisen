@@ -25,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `wish` (
     `wish_title` varchar(50) NOT NULL,
     `wish_description` varchar(50) NOT NULL,
     `wish_price` double NOT NULL,
-    `wish_link` varchar(200),
+    `wish_link` varchar(400),
     `is_reserved` boolean NOT NULL,
     PRIMARY KEY (`wish_title`, `wishlist_name`),
     FOREIGN KEY (`wishlist_owner`, `wishlist_name`) REFERENCES user_wishlist(`user_wishlist_owner`, `user_wishlist_name`)

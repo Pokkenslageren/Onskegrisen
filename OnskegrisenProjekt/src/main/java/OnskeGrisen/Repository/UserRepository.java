@@ -10,17 +10,15 @@ public class UserRepository {
     ArrayList<User> users = new ArrayList<>();
     String database = "jdbc:mysql://localhost:3306/onskegrisen";
     String dbUsername = "root";
-    String dbPassword = "root";
+    String dbPassword = "Illcosby91";
     Connection conn;
 
 
+    /**
+     * Creates a new user entry in the database
+     * @param user
+     */
     public void createUser(User user) {
-
-/*        String wantedUserName = user.getUsername();
-        if (readUserByUsername(wantedUserName).getUsername().equals(wantedUserName)) {
-            System.out.println("Username is not available.");
-
-        } else {*/
             String query = "INSERT INTO `users` (user_name, user_password, number_of_wishlists) VALUES (?, ?, ?);";
 
             try {
@@ -43,6 +41,11 @@ public class UserRepository {
     }
 
 
+    /**
+     * Reads a username and returns the associated User
+     * @param userName
+     * @return A User object
+     */
     public User readUserByUsername(String userName) {
         String query = "SELECT * FROM users WHERE user_name = ?;";
 
@@ -66,15 +69,18 @@ public class UserRepository {
                 return tempUserList.get(0);
             }
             rs.close();
-
         }
         catch(Exception e) {
             e.printStackTrace();
         }
         return null;
-
     }
 
+    /**
+     * Updates a User entry in the database, based on a User object and username
+     * @param user
+     * @param newUserName
+     */
     public void updateUser(User user, String newUserName) {
         String query = "UPDATE users SET user_name = ? WHERE user_name = ?;";
 
@@ -97,6 +103,10 @@ public class UserRepository {
 
     }
 
+    /**
+     * Deletes a user entry, based on username
+     * @param username
+     */
     public void deleteUser(String username) {
         String constraintsOffQuery = "SET foreign_key_checks = 0;";
         String query = "DELETE FROM users WHERE user_name = ?;";
@@ -124,6 +134,10 @@ public class UserRepository {
 
     }
 
+    /**
+     * Returns all entries in table, users
+     * @return An ArrayList of all Users
+     */
     public ArrayList<User> readAllUsers() {
 
         String query = "SELECT * FROM users;";

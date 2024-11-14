@@ -20,7 +20,7 @@ INSERT INTO `user_wishlist` (`user_wishlist_owner`, `user_wishlist_name`, `wishl
     ('Magnus', 'Magnus fødselsdag', 'Ønsker til min fødselsdag.')
 ;
 
--- set foreign_key_checks = 0;
+ -- set foreign_key_checks = 0;
 -- set foreign_key_checks = 1;
 INSERT INTO `wish` (`wishlist_owner`, `wishlist_name`, `wish_title`, `wish_description`, `wish_price`, `wish_link`, `is_reserved` ) VALUES
     ('Kalle', 'Kalles juleønsker 2024', 'Computer', 'En brugt macbook', '3000', 'https://www.apple.com', '0'),
