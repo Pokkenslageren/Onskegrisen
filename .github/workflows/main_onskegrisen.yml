@@ -22,8 +22,9 @@ jobs:
           java-version: '17'
           distribution: 'microsoft'
 
-      - name: Build with Maven
+      - name: Build with Maven -DskipTests
         run: mvn clean install
+        working-directory: ./OnskegrisenProjekt
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v4
