@@ -5,3 +5,9 @@ Semesterprojekt 2 på andet semester udarbejdet af Julius, Kalle, Magnus og Kasp
 
 Azure link:
 https://onskegrisen-ddf9b8gug4bcb3ek.westeurope-01.azurewebsites.net
+
+Github navne:
+Julius: JullerMus
+Kalle: Kalle-KO
+Kasper: KasperM2000
+Magnus: MagnusHannibal
