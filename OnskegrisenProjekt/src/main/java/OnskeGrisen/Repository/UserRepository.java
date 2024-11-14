@@ -15,7 +15,7 @@ public class UserRepository {
 
 
     /**
-     * Creates a new user entry in the database
+     * Creates a new user entry in the database table 'users'
      * @param user
      */
     public void createUser(User user) {
@@ -33,13 +33,10 @@ public class UserRepository {
                 pstmt.setInt(3,0);
                 pstmt.executeUpdate();
                 pstmt.close();
-
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        //}
     }
-
 
     /**
      * Reads a username and returns the associated User

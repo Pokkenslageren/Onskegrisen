@@ -18,6 +18,12 @@ public class WishListRepository {
     Connection conn;
 
 
+    /**
+     * Creates a new wishlist entry in the database table 'user-wishlist'
+     * @param userWishListOwner
+     * @param userWishListName
+     * @param wishListDescription
+     */
     public void createWishList(String userWishListOwner, String userWishListName, String wishListDescription) {
         String query = "INSERT INTO user_wishlist (user_wishlist_owner, user_wishlist_name, wishlist_description) VALUES (?, ?, ?)";
 
@@ -39,6 +45,12 @@ public class WishListRepository {
         }
     }
 
+    /**
+     * Reads a User and a wishlist name and returns a wishlist description
+     * @param user
+     * @param userWishListName
+     * @return A wishlist description associated with the params
+     */
     public String readWishListDescription(User user, String userWishListName) {
         String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
 
@@ -63,6 +75,13 @@ public class WishListRepository {
         return null;
     }
 
+
+    /**
+     * Reads a user and a wishlistname and return an associated wishlist entry
+     * @param user
+     * @param userWishListName
+     * @return A wishlist entry
+     */
     public WishList readWishListByName(User user, String userWishListName) {
         String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ? AND user_wishlist_name = ?";
 
@@ -96,6 +115,13 @@ public class WishListRepository {
         return null;
     }
 
+    /**
+     * Updates a wishlist entry based on the params
+     * @param user
+     * @param newUserWishListName
+     * @param newWishListDescription
+     * @param userWishListName
+     */
     public void updateWishList(User user, String newUserWishListName, String newWishListDescription, String userWishListName) {
         String query = "UPDATE user_wishlist SET user_wishlist_name = ?, wishlist_description = ? WHERE user_wishlist_name = ? AND user_wishlist_owner = ?";
 
@@ -119,6 +145,11 @@ public class WishListRepository {
         }
     }
 
+    /**
+     * Deletes a wishlist entry basen on username and wishlistname
+     * @param userName
+     * @param userWishListName
+     */
     public void deleteWishList(String userName, String userWishListName) {
         String constraintsOffQuery = "SET foreign_key_checks = 0;";
         String constraintsOnQuery = "SET foreign_key_checks = 1;";
@@ -146,6 +177,10 @@ public class WishListRepository {
         }
     }
 
+    /**
+     * Sets the owner of an arraylist of wishlists
+     * @param user
+     */
     public void setOwnerWishlists(User user){
         String query = "SELECT * FROM user_wishlist WHERE user_wishlist_owner = ?";
 
