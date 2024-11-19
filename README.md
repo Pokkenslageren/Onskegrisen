@@ -17,4 +17,5 @@ Semesterprojekt 2 på andet semester udarbejdet af Julius, Kalle, Magnus og Kasp
 * Magnus: MagnusHannibal
 
 ##Licenses
-The contents of this project is licensed under the 
+The contents of this project is licensed under the [MIT LICENSE](en.wikipedia.org/wiki/MIT_License)
+
